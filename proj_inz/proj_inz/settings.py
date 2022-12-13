@@ -73,12 +73,28 @@ WSGI_APPLICATION = 'proj_inz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# ! Default database to run project
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# ! Credential template for railway pg connection (container works 24h): https://railway.app
+# ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'railway', 
+#         'USER': 'postgres',
+#         'PASSWORD': 'iU4fuYC6bRNdw6QtrKO6',
+#         'HOST': 'containers-us-west-150.railway.app', 
+#         'PORT': '6259',
+#     }
+# }
 
 
 # Password validation
