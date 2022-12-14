@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+{% comment %} Lista importów języka jinja2 {% endcomment %}
+
+{% comment %}
+Kontener na wiadomości w przypadku nieudanego zalgoowania
+{% endcomment %}
+<div>
+  {% for message in messages %}
+  {% if message %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endif %}
+  {% endfor %}
+
+  {% comment %} Formularz dla logowania użytkownika  {% endcomment %}
+  <form method = "POST" action = "">
+    <div class="form-group">
+      {% csrf_token %}
+      <label for="inputusername">Nazwa użytkownika:</label>
+      <div>
+            <input type="text" id="inputusername" name="username" placeholder="Wprowadź nazwę użytkownika"/>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputpassword">Hasło: </label>
+      <div>
+            <input type="password" id="inputpassword" name="password"  placeholder="Wprowadź hasło" class="form-control"/>
+      </div>
+      <small id="loginHelp">Nigdy nie podawaj swojejego hasła.</small>
+    </div>
+    <br>
+      <input type="Submit" value="Zaloguj" class="btn btn-dark"/>
+  </form>
+</div>
+{% endblock content %}
