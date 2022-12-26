@@ -1,5 +1,4 @@
 .table-container{
-    border: 3px solid red;
-    border-radius: 5%;
+    /* //border: 3px solid red; */
     overflow-x: auto;
 }

@@ -87,29 +87,26 @@ WSGI_APPLICATION = 'proj_inz.wsgi.application'
 
 
 # ! Default database to run project
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # ! Credential template for railway pg connection (container works 24h): https://railway.app
-# # ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'railway', 
-#         'USER': 'postgres',
-#         'PASSWORD': 'TxtRlAWwAYIbgnqOFBa8',
-#         'HOST': 'containers-us-west-18.railway.app', 
-#         'PORT': '6077',
-#         'OPTIONS': {
-#           'driver':'....',  
-#         },
-#     }
-# }
+# ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'railway', 
+        'USER': 'postgres',
+        'PASSWORD': 'SZrmdvDOmS7p0KqQ1pea',
+        'HOST': 'containers-us-west-146.railway.app', 
+        'PORT': '7260',
+    }
+}
 
 
 # Password validation

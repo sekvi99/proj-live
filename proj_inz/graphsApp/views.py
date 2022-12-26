@@ -11,15 +11,15 @@ from .models import *
 
 @login_required(login_url='/login/')
 def home(request):
-    # table_name = 'Strona główna'
-    # querySet = CurrencyRates.objects.all()
-    # dict_data = querySet.values()
-    # keys = list(dict_data[0].keys())
-    # context ={'table_name':table_name,
-    #           'headers':keys,
-    #           'json_file':dict_data
-    #           }
-    context = dict({})
+    table_name = 'Strona główna'
+    querySet = CurrencyRates.objects.all()
+    dict_data = querySet.values()
+    keys = list(dict_data[0].keys())
+    context ={'table_name':table_name,
+              'headers':keys,
+              'json_file':dict_data
+              }
+    #context = dict({})
     return render(request, 'graphsApp/dashboard.html',context)
 
 @login_required(login_url='/login/')
