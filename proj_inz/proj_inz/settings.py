@@ -63,7 +63,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'loginApp', 'templates'),
+            os.path.join(BASE_DIR, 'graphsApp', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -94,15 +96,18 @@ DATABASES = {
 
 
 # ! Credential template for railway pg connection (container works 24h): https://railway.app
-# ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
+# # ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'railway', 
 #         'USER': 'postgres',
-#         'PASSWORD': 'iU4fuYC6bRNdw6QtrKO6',
-#         'HOST': 'containers-us-west-150.railway.app', 
-#         'PORT': '6259',
+#         'PASSWORD': 'TxtRlAWwAYIbgnqOFBa8',
+#         'HOST': 'containers-us-west-18.railway.app', 
+#         'PORT': '6077',
+#         'OPTIONS': {
+#           'driver':'....',  
+#         },
 #     }
 # }
 

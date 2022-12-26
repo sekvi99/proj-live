@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% include 'base.html' %}
+{% block content %}
+{% load static %}
+    <!-- Data Name that came from backend -->
+    <h1>{{table_name}}</h1> 
+    <br>
+    <h3>Market Stats</h3>
+    <!-- Section for market statistics -->
+    <section>
+    <!-- Save list of keys in backed -->
+    {% for key in keys %}
+        <div>
+            <small>{{key}}</small>
+            <!-- https://stackoverflow.com/questions/25675569/how-to-access-properties-of-referenced-objects-in-jinja2-templates-google-app-e -->
+            <p>{{obj.key}}</p> 
+        </div>
+    {% endfor %}
+    </section>
+    <!-- Situation about currency this week -->
+    <div>
+        <!--  -->
+        <h3>{{sitution_message}}</h3>
+        <!-- Property from coinbase object -->
+        <p>{{obj.details}}</p>
+    </div>
+    <br>
+    <!-- Section for calculator -->
+    <div>
+        <h1>Calculator</h1>
+        <div>
+            <form>
+                <!-- Sending authorization token -->
+                {% csrf_token %} 
+                {{form}}
+            </form>
+        </div>
+    </div>
+    <!-- Section for about -->
+    <div>
+        <!--  -->
+        <h3>About</h3>
+        <!-- Property from coinbase object -->
+        <p>{{obj.description}}</p>
+        <!-- Resources --> 
+        <h5>Resources</h5> // TODO mapping links
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+
+{% endblock %}

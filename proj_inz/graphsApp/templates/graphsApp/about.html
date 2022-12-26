@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+<!-- Eductional prooject section -->
+<div>
+    <h3>Educational pruposes project</h3>
+    <p>gdsfgdrsg</p>
+    <button></button>
+</div>
+<!-- Tech Stack -->
+<div>
+    <h3>Tech Stack</h3>
+    <!-- TODO Fullfill the tech stack of the project -->
+    <p>gfdsafgsrdgdsrg</p>
+</div>
+<!-- TODO Accordion box -->
+<!-- https://www.w3schools.com/howto/howto_js_accordion.asp -->
+<div>
+
+</div>
+<!-- Authors -->
+<div>
+    <h3>Authors</h3>
+    <p>sdgsdrg</p>
+    {% for author in authors %}
+    <div>
+        <img src="{% static 'images/{{author.image}}.png' %}">
+        <p>{{author.name}}</p>
+    </div>
+    {% endfor %}
+</div>

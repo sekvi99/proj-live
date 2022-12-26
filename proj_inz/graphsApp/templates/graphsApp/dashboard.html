@@ -1,0 +1,64 @@
+{% extends 'base.html' %} 
+<!DOCTYPE html>
+{% comment %} 
+<!-- Lista importów języka Jinja -->
+{% endcomment %}
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+<!-- Apps Name and Logout button -->
+{% include 'graphsApp/navbar.html' %}
+<!-- Table Header -->
+<div>
+    <!-- Stock Prices and Update Date -->
+    <div>
+        <h2></h2>
+        <small></small>
+    </div>
+    <!-- Action buttons -->
+    <div>
+        <button></button>
+        <button></button>
+    </div>
+</div>
+<!-- Toolbar -->
+<div>
+    <!-- Searchbox -->
+    <div>
+        <input type="search">
+    </div>
+    <!-- Input fields -->
+    <div>
+        <!-- Favorite Currencies -->
+        <input type="checkbox">
+        <!-- PLN and Hour Input fields -->
+        <input type="select" name="currency">
+        <input type="select" name="timestamp">
+    </div>
+</div>
+<br>
+<!-- Table For Displaying data -->
+<!-- TODO rozwiaznie obrazkow i propertisow w tabeli -->
+<!-- https://stackoverflow.com/questions/9961046/django-template-displaying-images-in-table -->
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+            {% for header_name in headers %}
+                <th>{{header_name}}</th>
+            {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for dict in json_file %}
+                <tr>
+                    {% for value in dict.values %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

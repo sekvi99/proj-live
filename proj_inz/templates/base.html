@@ -5,13 +5,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type='text/css' media='screen' href="{% static 'styles/main.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customStyles.css' %}">
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
+    {% include "appBar.html" %}
     <div>
         {% block content %}     
         {% endblock content %}
     </div>
+    {% include "footer.html" %}
   </body>
 </html>
