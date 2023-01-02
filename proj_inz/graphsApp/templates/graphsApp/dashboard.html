@@ -52,8 +52,12 @@
         <tbody>
             {% for dict in json_file %}
                 <tr>
-                    {% for value in dict.values %}
-                        <td>{{value}}</td>
+                    {% for key, value in dict.items %}
+                        {% if key == 'symbol' %}
+                            <a href="#"><td>{{value}}</td></a>
+                        {% else %}
+                            <td>{{value}}</td>
+                        {% endif %}
                     {% endfor %}
                 </tr>
             {% endfor %}

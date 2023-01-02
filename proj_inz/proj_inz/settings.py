@@ -27,14 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
 INSTALLED_APPS = [
-    # ! Własne aplikacje
-    'loginApp.apps.LoginappConfig',
-    'graphsApp.apps.GraphsappConfig',
-
     # ! Użytkowe firm trzecich
     'crispy_forms',
     'django.contrib.admin',
@@ -43,6 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # ! Własne aplikacje
+    'loginApp.apps.LoginappConfig',
+    'graphsApp.apps.GraphsappConfig',
 ]
 
 MIDDLEWARE = [
@@ -102,9 +99,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway', 
         'USER': 'postgres',
-        'PASSWORD': 'SZrmdvDOmS7p0KqQ1pea',
-        'HOST': 'containers-us-west-146.railway.app', 
-        'PORT': '7260',
+        'PASSWORD': 'itcS6IF5Ah4IUeN5YFLF',
+        'HOST': 'containers-us-west-159.railway.app', 
+        'PORT': '7732',
     }
 }
 

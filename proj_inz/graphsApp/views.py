@@ -2,25 +2,65 @@ from cgi import test
 from locale import currency
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.apps import apps
 from .forms import calculatorForm
 from .utils import recalculate_value
-from .models import *
+from .models import CryptoCurrencies, StockExchange, CurrencyRates
+from .utils import get_unique_names_of_symbol_for_passed_model, calculate_percent_diffrence, get_model_by_name
+from django.contrib.contenttypes.models import ContentType
+from typing import Final
 # Create your views here.
 # ! test - view to check wheth er login works porpperly
 
 
+"""
+Home display table in given order
+|Symbol|Date|Last Price|Diffrence between Last Two as %|
+"""
 @login_required(login_url='/login/')
 def home(request):
-    table_name = 'Strona główna'
-    querySet = CurrencyRates.objects.all()
-    dict_data = querySet.values()
-    keys = list(dict_data[0].keys())
+    """
+    Function view for base url ''
+    """
+    table_name = 'Main Page'
+    global data
+    keys = None
+    unqiue_crypto = get_unique_names_of_symbol_for_passed_model('cryptocurrencies') # ! Getting unique coins for crypto currencies
+    unique_stock = get_unique_names_of_symbol_for_passed_model('stockexchange') # ! Getting unique companies for stock exchange
+    crypto_percentage = [calculate_percent_diffrence('cryptocurrencies',crypto) for crypto in unqiue_crypto] # ! Getting percentage change of values for crypto
+    stock_percentage = [calculate_percent_diffrence('stockexchange',stock) for stock in unique_stock] # ! Getting percentage change of values for stocks
+    
+    try:
+        crypto_model = get_model_by_name('cryptocurrencies')
+        stock_model = get_model_by_name('stockexchange')
+        data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto] + \
+            [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
+        print(data)
+    except Exception:
+        pass
+        
+    
+    keys = ['Data', 'Wartość', 'Znacznik']
     context ={'table_name':table_name,
               'headers':keys,
-              'json_file':dict_data
+              'json_file':data
               }
-    #context = dict({})
     return render(request, 'graphsApp/dashboard.html',context)
+
+@login_required(login_url='/login/')
+def about_authors(request):
+    """
+    Function view for 'authors'
+    """
+    authors: Final[list] = [
+        {'name':'Filip', 'second_name':'Kozlik'},
+        {'name':'Wocjiech', 'second_name':'Kubak'},
+        {'name':'Wocjiech', 'second_name':'Harmata'},
+    ]
+    context = {
+        'authors':authors,
+    }
+    return render(request, 'graphsApp/about.html', context)
 
 @login_required(login_url='/login/')
 def data_view(request):

@@ -25,10 +25,10 @@ Funkcja na wyjściu zwraca obiekt render, który składa się z:
 3. Obiekt context => słownik, z danymi który przekazujemy do template'a.
 """
 # ! Obsługa logowania użytkownika
-def loginPage(request):
+def login_page(request):
   table_name = 'Login'
   if request.user.is_authenticated:
-    return redirect('graph_App:home')
+    return redirect('graphs_App:home')
   else:
     if request.method == 'POST':
       username = request.POST.get('username')
@@ -43,7 +43,7 @@ def loginPage(request):
       if user is not None:
         login(request, user) 
         messages.success(request, f'Pomyślnie zalogowano - Witaj {request.user.username}!')
-        return redirect('graph_App:home')
+        return redirect('graphs_App:home')
       else:
         messages.error(request, 'Login lub hasło użytkownika jest niewłaściwe!')
 
@@ -54,7 +54,7 @@ def loginPage(request):
 Funkcja logout z użyciem gotowej metody logout usuwa w rzeczywistości token uwietrzylniający i przekierowuje użytkownika na inną stronę
 """
 # ! Obsługa wylogowywania użytkownika
-def logoutPage(request):
+def logout_page(request):
     table_name = 'Strona Wyjściowa'
     logout(request)
     context = {'table_name':table_name}
