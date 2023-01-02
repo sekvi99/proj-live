@@ -9,11 +9,11 @@
     <!-- Section for market statistics -->
     <section>
     <!-- Save list of keys in backed -->
-    {% for key in keys %}
+    {% for key, value in data.items %}
         <div>
             <small>{{key}}</small>
             <!-- https://stackoverflow.com/questions/25675569/how-to-access-properties-of-referenced-objects-in-jinja2-templates-google-app-e -->
-            <p>{{obj.key}}</p> 
+            <p>{{value}}</p> 
         </div>
     {% endfor %}
     </section>
