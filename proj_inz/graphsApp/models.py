@@ -29,7 +29,7 @@ class CryptoCurrencies(models.Model):
     class Meta:
         managed = False
         db_table = 'crypto_currencies'
-        app_label = 'graphs_App'
+        app_label = 'graphsApp'
         ordering = ['date']
 
 
@@ -56,7 +56,7 @@ class CurrencyRates(models.Model):
     class Meta:
         managed = False
         db_table = 'currency_rates'
-        app_label = 'graphs_App'
+        app_label = 'graphsApp'
         ordering = ['date']
 
 
@@ -88,5 +88,5 @@ class StockExchange(models.Model):
     class Meta:
         managed = False
         db_table = 'stock_exchange'
-        app_label = 'graphs_App'
+        app_label = 'graphsApp'
         ordering = ['date']

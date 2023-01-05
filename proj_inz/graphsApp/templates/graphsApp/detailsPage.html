@@ -20,20 +20,46 @@
     <!-- Situation about currency this week -->
     <div>
         <!--  -->
-        <h3>{{sitution_message}}</h3>
+        <h3>{{table_name}} in last days</h3>
         <!-- Property from coinbase object -->
-        <p>{{obj.details}}</p>
+        <p>In last days value of {{table_name}} changed about {{situation_message}}%</p>
     </div>
     <br>
+    <!-- Section for data preview -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                {% for header_name in table_keys %}
+                    <th>{{header_name}}</th>
+                {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for dict in table_values %}
+                    <tr>
+                        {% for key, value in dict.items %}
+                            <td>{{value}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     <!-- Section for calculator -->
     <div>
         <h1>Calculator</h1>
         <div>
-            <form>
+            <form action="" method="post">
                 <!-- Sending authorization token -->
                 {% csrf_token %} 
                 {{form}}
+            <input name="form" type="submit" value="Oblicz"/>
             </form>
+            {% if calc_value %}
+                <p>{{calc_value}}</p>
+            {% endif %}
         </div>
     </div>
     <!-- Section for about -->

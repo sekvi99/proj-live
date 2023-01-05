@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     
     # ! Własne aplikacje
     'loginApp.apps.LoginappConfig',
-    'graphsApp.apps.GraphsappConfig',
+    'graphsApp.apps.GraphsAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,9 +99,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway', 
         'USER': 'postgres',
-        'PASSWORD': 'itcS6IF5Ah4IUeN5YFLF',
-        'HOST': 'containers-us-west-159.railway.app', 
-        'PORT': '7732',
+        'PASSWORD': 'dgNFciFZRWBKc8cFHTSp',
+        'HOST': 'containers-us-west-115.railway.app', 
+        'PORT': '6074',
     }
 }
 

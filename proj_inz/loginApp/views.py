@@ -28,7 +28,7 @@ Funkcja na wyjściu zwraca obiekt render, który składa się z:
 def login_page(request):
   table_name = 'Login'
   if request.user.is_authenticated:
-    return redirect('graphs_App:home')
+    return redirect('graphsApp:home')
   else:
     if request.method == 'POST':
       username = request.POST.get('username')
@@ -43,7 +43,7 @@ def login_page(request):
       if user is not None:
         login(request, user) 
         messages.success(request, f'Pomyślnie zalogowano - Witaj {request.user.username}!')
-        return redirect('graphs_App:home')
+        return redirect('graphsApp:home')
       else:
         messages.error(request, 'Login lub hasło użytkownika jest niewłaściwe!')
 

@@ -1,29 +1,30 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% block content %} 
 <!-- Eductional prooject section -->
 <div>
-    <h3>Educational pruposes project</h3>
-    <p>gdsfgdrsg</p>
-    <button></button>
+    <h3>Educational purposes project</h3>
 </div>
 <!-- Tech Stack -->
 <div>
     <h3>Tech Stack</h3>
     <!-- TODO Fullfill the tech stack of the project -->
-    <p>gfdsafgsrdgdsrg</p>
 </div>
+<br>
 <!-- TODO Accordion box -->
 <!-- https://www.w3schools.com/howto/howto_js_accordion.asp -->
 <div>
 
 </div>
+<br>
 <!-- Authors -->
 <div>
     <h3>Authors</h3>
-    <p>sdgsdrg</p>
+    <p>Project created by people listed below</p>
     {% for author in authors %}
     <div>
-        
         <p>{{author.name}}</p>
+        <p>{{author.second_name}}</p>
     </div>
     {% endfor %}
 </div>
+{% endblock content %}
