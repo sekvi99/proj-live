@@ -1,4 +1,105 @@
+@font-face {
+    font-family: 'SourceCodePro';
+    src: local('SourceCodePro'),
+         url('../fonts/SourceCodePro.ttf') format("truetype");
+}
+
+
+@font-face {
+    font-family: 'Unbounded';
+    src: local('Unbounded'),
+         url('../fonts/Unbounded.ttf') format("truetype");
+}
+
+:root {
+	--font-display: "Unbounded";
+	--font-body: "SourceCodePro";
+
+	/* Theme Color 1 */
+    --primary-dark: #3C492B;
+    --primary-main: #DBFFAC;
+    --primary-light: #EEFFD9;
+
+    /* Common */
+    --background: #fff;
+    --text: #000;
+
+    /* Others */
+    --red: #FF0000;
+    --blue: #0000FF;
+    --green: #00FF00;
+
+}
+
+* {
+	/* Reset margins and padding */
+	margin: 0;
+	padding: 0;
+    font-family: var(--font-body);
+}
+
+::selection {
+	/* Set background color for selected text */
+	background: var(--green);
+	color: var(--text);
+}
+
+/* Appname */
+h1 {
+    font-size: 28px;
+    font-family: var(--font-display);
+}
+
+
+/* Display */
+h2 {
+    font-size: 36px;
+    font-family: var(--font-display);
+}
+
+/* Title */
+h3 {
+    font-size: 28px;
+    font-family: var(--font-display);
+}
+
+
+/* Subtitle */
+h3 {
+    font-size: 28px,
+    
+}
+
+/* Body */
+p {
+    font-size: 24px;
+    line-height: 40.3px;
+}
+
+/* Table Cell 1 */
+.tc1 {
+    font-size: 16px;
+}
+
+/* Table Cell 2 */
+.tc1 {
+    font-size: 14px;
+}
+
+button {
+    font-size: 18px;
+}
+
+caption {
+    font-size: 16px;
+}
+
+
 .table-container{
     /* //border: 3px solid red; */
     overflow-x: auto;
+}
+
+th {
+    font-weight: bold;
 }
