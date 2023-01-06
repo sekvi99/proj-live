@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.apps import apps
 from .forms import calculatorForm
-from .utils import recalculate_value
+from .utils import recalculate_value, generate_graph
 from .models import CryptoCurrencies, StockExchange, CurrencyRates
 from .utils import get_unique_names_of_symbol_for_passed_model, calculate_percent_diffrence, get_model_by_name, get_preview_data
 from django.contrib.contenttypes.models import ContentType
@@ -70,11 +70,13 @@ def data_view(request, tablename: str, symbol: str):
     global data
     table_values = None
     table_keys = None
+    graph = None
     symbol = symbol.capitalize() if tablename == 'cryptocurrencies' else symbol.upper()
     situation_message = calculate_percent_diffrence(tablename, symbol)
     try:
         data_model = get_model_by_name(tablename)
         data = data_model.objects.filter(symbol=symbol).last()
+        graph = generate_graph(data_model.objects.filter(symbol=symbol).values())
         dict_data = model_to_dict(data)
         table_values, table_keys = get_preview_data(data_model, symbol)
         
@@ -107,7 +109,8 @@ def data_view(request, tablename: str, symbol: str):
         'form':form,
         'calc_value':calc_value,
         'table_values':table_values,
-        'table_keys':table_keys
+        'table_keys':table_keys,
+        'graph': graph
     })
     return render(request, 'graphsApp/detailsPage.html', context)
     

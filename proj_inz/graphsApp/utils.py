@@ -76,3 +76,40 @@ def get_unique_names_of_symbol_for_passed_model(model_name: str) -> List[str]:
     model = (apps.all_models['graphsApp'])[model_name]
     return list(model.objects.order_by().values_list('symbol', flat=True).distinct())
 
+
+
+from decimal import Decimal
+from plotly.offline import plot
+from typing import Any
+import plotly.graph_objects as go
+
+def get_float_fields(record: dict[int, Any]) -> list[str]:
+    return [key for key, value in record.items() 
+        if isinstance(value, Decimal) or isinstance(value, float)]
+
+
+def get_timestamp_fields(record: dict[str, Any]) -> str | None:
+    for key, value in record.items():
+        if isinstance(value, datetime.date):
+            return key   
+    return None
+
+
+def generate_graph(data: list[dict[str, str]]) -> plot:
+    if not data:
+        raise ValueError('There is no values to plot.')
+
+    datelike_col = get_timestamp_fields(data[0])
+
+    if not datelike_col:
+        raise ValueError('Cannot extract expected columns.')
+
+    dates = [element.get(datelike_col) for element in data]
+    graphs = [go.Scatter(x=dates, y=[element.get(numeric_col) for element in data],
+         legendgroup="group1", legendgrouptitle_text = 'Dostępne zmienne:', mode='lines', name=numeric_col)
+         for numeric_col in get_float_fields(data[0])]
+    
+    layout = {'template': 'plotly_dark', 'legend_groupclick': 'toggleitem'}
+    
+    return plot(dict({'data': graphs, 'layout': layout}), output_type='div')
+
