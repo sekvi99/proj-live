@@ -53,15 +53,13 @@
         </thead>
         <tbody>
             {% for dict in json_file %}
+            <a href="#" class="navLink">
                 <tr>
                     {% for key, value in dict.items %}
-                        {% if key == 'symbol' %}
-                            <a href="#"><td>{{value}}</td></a>
-                        {% else %}
                             <td>{{value}}</td>
-                        {% endif %}
                     {% endfor %}
                 </tr>
+            </a>
             {% endfor %}
         </tbody>
     </table>

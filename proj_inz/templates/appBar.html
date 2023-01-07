@@ -7,10 +7,17 @@
         </div>
     </a>
     
-        <div class="flex align-items-center">
-            <a href="" class="a-clear" >
-                <button>Log In</button>
-            </a>
-        </div>
-    
+    {% if user.is_authenticated %}
+    <div class="flex align-items-center">
+        <a href="{% url 'login_App:logout'%}" class="a-clear" >
+            <button>Log out</button>
+        </a>
+    </div>
+    {% else %}
+    <div class="flex align-items-center">
+        <a href="{% url 'login_App:login'%}" class="a-clear" >
+            <button>Log In</button>
+        </a>
+    </div>
+    {% endif %}
 </div>

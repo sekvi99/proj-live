@@ -83,19 +83,20 @@ from plotly.offline import plot
 from typing import Any
 import plotly.graph_objects as go
 
-def get_float_fields(record: dict[int, Any]) -> list[str]:
+
+def get_float_fields(record):
     return [key for key, value in record.items() 
         if isinstance(value, Decimal) or isinstance(value, float)]
 
 
-def get_timestamp_fields(record: dict[str, Any]) -> str | None:
+def get_timestamp_fields(record):
     for key, value in record.items():
         if isinstance(value, datetime.date):
             return key   
     return None
 
 
-def generate_graph(data: list[dict[str, str]]) -> plot:
+def generate_graph(data) -> plot:
     if not data:
         raise ValueError('There is no values to plot.')
 
