@@ -171,6 +171,7 @@ nav {
     color: var(--text)!important;
 }
 
+
 .navLink:hover {
     background-color: var(--primary-light)!important;
     border-bottom: 2px solid var(--primary-dark);
