@@ -235,6 +235,20 @@ footer {
     overflow-x: auto;
 }
 
+tr:hover {
+    background-color: var(--primary-light);
+}
+
+td > a:first-child {
+    display: flex;
+    /* padding: 18px; */
+    text-decoration: none;
+    color: inherit;
+    /* z-index: 0; */
+  
+}
+  
+
 th {
     font-weight: bold;
 }

@@ -56,13 +56,13 @@
             {% if dict.symbol in unqiue_crypto %}
                 <tr>
                     {% for key, value in dict.items %}
-                            <td><a href="data/cryptocurrencies/{{dict.symbol}}" class="navLink">{{value}}</a></td>
+                            <td><a href="data/cryptocurrencies/{{dict.symbol}}" >{{value}}</a></td>
                     {% endfor %}
                 </tr>
             {% else %}
                 <tr>
                     {% for key, value in dict.items %}
-                            <td><a href="data/stockexchange/{{dict.symbol}}" class="navLink">{{value}}</a></td>
+                            <td><a href="data/stockexchange/{{dict.symbol}}" >{{value}}</a></td>
                     {% endfor %}
                 </tr>
             {% endif %}

@@ -110,7 +110,7 @@ def generate_graph(data) -> plot:
          legendgroup="group1", legendgrouptitle_text = 'Dostępne zmienne:', mode='lines', name=numeric_col)
          for numeric_col in get_float_fields(data[0])]
     
-    layout = {'template': 'plotly_dark', 'legend_groupclick': 'toggleitem'}
+    layout = {'template': 'plotly_white', 'legend_groupclick': 'toggleitem'}
     
     return plot(dict({'data': graphs, 'layout': layout}), output_type='div')
 
