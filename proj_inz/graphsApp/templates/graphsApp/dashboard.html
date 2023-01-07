@@ -53,13 +53,23 @@
         </thead>
         <tbody>
             {% for dict in json_file %}
-            <a href="#" class="navLink">
+            {% if dict.symbol in unqiue_crypto %}
+            <a href="data/cryptocurrencies/{{dict.symbol}}" class="navLink">
                 <tr>
                     {% for key, value in dict.items %}
                             <td>{{value}}</td>
                     {% endfor %}
                 </tr>
             </a>
+            {% else %}
+            <a href="data/stockexchange/{{dict.symbol}}" class="navLink">
+                <tr>
+                    {% for key, value in dict.items %}
+                            <td>{{value}}</td>
+                    {% endfor %}
+                </tr>
+            </a>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>

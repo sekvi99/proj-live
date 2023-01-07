@@ -8,9 +8,8 @@ from .utils import recalculate_value, generate_graph
 from .models import CryptoCurrencies, StockExchange, CurrencyRates
 from .utils import get_unique_names_of_symbol_for_passed_model, calculate_percent_diffrence, get_model_by_name, get_preview_data
 from django.contrib.contenttypes.models import ContentType
-from typing import Final
+from typing import Final, List
 from django.forms.models import model_to_dict
-
 
 """
 Home display table in given order
@@ -34,7 +33,6 @@ def home(request):
         stock_model = get_model_by_name('stockexchange')
         data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto] + \
             [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
-        
     except Exception:
         pass
         
@@ -42,7 +40,9 @@ def home(request):
     keys = ['Data', 'Wartość', 'Znacznik']
     context ={'table_name':table_name,
               'headers':keys,
-              'json_file':data
+              'json_file':data,
+              'unqiue_crypto':unqiue_crypto,
+              'unique_stock':unique_stock,
               }
     return render(request, 'graphsApp/dashboard.html',context)
 
