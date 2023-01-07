@@ -22,6 +22,7 @@
 
     /* Common */
     --background: #fff;
+    --grey: #D9D9D9;
     --text: #000;
 
     /* Others */
@@ -35,7 +36,6 @@
 }
 
 * {
-	/* Reset margins and padding */
 	margin: 0;
 	padding: 0;
     font-family: var(--font-body);
@@ -75,18 +75,12 @@ div > div {
     border: 1px solid greenyellow;
 }
 
-#appbar-logo {
-    width: 36px;
-    height: 36px;
-    padding: 4px;
-    background-color: var(--primary-light);
-    margin-right: 4px;
-}
 
 
 
 
-/* Display */
+/* Typography */
+    /* Display */
 h2 {
     font-size: 36px;
     font-family: var(--font-display);
@@ -94,7 +88,7 @@ h2 {
     text-align: center;
 }
 
-/* Title */
+    /* Title */
 h3 {
     font-size: 28px;
     font-family: var(--font-display);
@@ -102,27 +96,27 @@ h3 {
 }
 
 
-/* Appname && Subtitle */
+    * Appname && Subtitle */
 h3, h1 {
     font-size: 28px;
     font-family: var(--font-display);
     
 },
 
-/* Body */
+    /* Body */
 p {
     font-size: 24px;
     line-height: 40.3px;
     
 }
 
-/* Table Cell 1 */
+    /* Table Cell 1 */
 .tc1 {
     font-size: 16px;
     font-weight: 500;
 }
 
-/* Table Cell 2 */
+    /* Table Cell 2 */
 .tc1 {
     font-size: 14px;
     font-weight: 500;
@@ -132,9 +126,19 @@ p {
 
 button {
     font-size: 18px;
+    font-weight: 700;
+    font-family: var(--font-display);
     background-color: var(--primary-main);
     color: var(--primary-dark);
+    
     border-radius: 0;
+
+    display: inline-block;
+	padding: 12px 12px;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	border: 0;
 }
 
 button:hover {
@@ -145,18 +149,9 @@ button:hover {
 
 caption {
     font-size: 16px;
+    font-weight: 500;
 }
 
-
-
-.table-container{
-    /* //border: 3px solid red; */
-    overflow-x: auto;
-}
-
-th {
-    font-weight: bold;
-}
 
 /* Navbar styles */
 
@@ -180,4 +175,65 @@ nav {
     background-color: var(--primary-light)!important;
     border-bottom: 2px solid var(--primary-dark);
     
+}
+
+
+/* Appbar logo styles */
+
+#appbar-logo {
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    background-color: var(--grey);
+    margin-right: 4px;
+}
+
+
+
+.a-logo {
+    text-decoration: none!important;
+    color: var(--text)!important;
+}
+
+
+.a-logo:hover {
+    color: var(--blue)!important;
+    text-decoration: solid;
+    
+}
+
+
+/* Link stylees */
+
+a:-webkit-any(a) {
+    color: var(--blue);
+}
+
+
+.a-clear {
+    text-decoration: none!important;
+    color: var(--text);
+
+}
+
+
+
+/* Footer styles */
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Table styles */
+
+.table-container{
+    /* //border: 3px solid red; */
+    overflow-x: auto;
+}
+
+th {
+    font-weight: bold;
 }

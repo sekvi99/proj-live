@@ -1,10 +1,16 @@
 {% load static %}
 <div class="flex space-between">
-    <div class="flex align-items-center">
-        <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
-        <h1>IntelOPS</h1>
-    </div>
-    <div class="flex align-items-center">
-        <button>Log In</button>
-    </div>
+    <a href="{% url 'graphsApp:home'  %}" class="a-logo">
+        <div class="flex align-items-center">
+            <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
+            <h1>IntelOPS</h1>
+        </div>
+    </a>
+    
+        <div class="flex align-items-center">
+            <a href="" class="a-clear" >
+                <button>Log In</button>
+            </a>
+        </div>
+    
 </div>
