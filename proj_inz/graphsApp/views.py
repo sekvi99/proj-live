@@ -25,14 +25,44 @@ def home(request):
     keys = None
     unqiue_crypto = get_unique_names_of_symbol_for_passed_model('cryptocurrencies') # ! Getting unique coins for crypto currencies
     unique_stock = get_unique_names_of_symbol_for_passed_model('stockexchange') # ! Getting unique companies for stock exchange
-    crypto_percentage = [calculate_percent_diffrence('cryptocurrencies',crypto) for crypto in unqiue_crypto] # ! Getting percentage change of values for crypto
-    stock_percentage = [calculate_percent_diffrence('stockexchange',stock) for stock in unique_stock] # ! Getting percentage change of values for stocks
+    # crypto_percentage = [calculate_percent_diffrence('cryptocurrencies',crypto) for crypto in unqiue_crypto] # ! Getting percentage change of values for crypto
+    # stock_percentage = [calculate_percent_diffrence('stockexchange',stock) for stock in unique_stock] # ! Getting percentage change of values for stocks
     
     try:
         crypto_model = get_model_by_name('cryptocurrencies')
         stock_model = get_model_by_name('stockexchange')
         data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto] + \
             [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
+    except Exception:
+        pass
+        
+    
+    keys = ['Data', 'Wartość', 'Znacznik']
+    context ={'table_name':table_name,
+              'headers':keys,
+              'json_file':data,
+              'unqiue_crypto':unqiue_crypto,
+              'unique_stock':unique_stock,
+              }
+    return render(request, 'graphsApp/dashboard.html',context)
+
+@login_required(login_url='/login/')
+def filtered_home_view(request, datatype: str) -> render:
+    """
+    View for data filtering in home page => crypto, stock
+    """
+    table_name = 'Filtered Home View'
+    global data
+    keys = None
+    unqiue_crypto = get_unique_names_of_symbol_for_passed_model('cryptocurrencies') # ! Getting unique coins for crypto currencies
+    unique_stock = get_unique_names_of_symbol_for_passed_model('stockexchange') # ! Getting unique companies for stock exchange
+    try:
+        if datatype == 'cryptocurrencies':
+            crypto_model = get_model_by_name('cryptocurrencies')
+            data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto]
+        elif datatype == 'stockexchange':
+            stock_model = get_model_by_name('stockexchange')
+            data = [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
     except Exception:
         pass
         
