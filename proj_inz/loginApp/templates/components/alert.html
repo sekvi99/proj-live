@@ -1,0 +1,23 @@
+<div class="alert alert-{{ label.tags }}">
+    <span class="material-symbols-outlined">
+      warning
+    </span> 
+    <caption>
+    {{ label }}
+    </caption>
+</div>
+<style>
+    .alert {
+      background: var(--alert-box);
+      padding: 12px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      color: var(--background)
+    }
+  
+    .alert > span {
+      color: var(--background)
+    }  
+</style>

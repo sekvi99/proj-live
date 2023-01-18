@@ -30,6 +30,9 @@
     --blue: #0000FF;
     --green: #00FF00;
 
+    /* Alerts */
+    --alert-box: #ed5959;
+
     /* Spacing */
     --spacing: 8px;
 
@@ -166,6 +169,19 @@ caption {
     font-weight: 500;
 }
 
+label {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+input {
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: left;
+}
 
 
 /* Link stylees */

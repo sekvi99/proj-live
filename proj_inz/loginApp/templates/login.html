@@ -8,33 +8,79 @@
 Kontener na wiadomości w przypadku nieudanego zalgoowania
 {% endcomment %}
 <div>
+  <div class="alert-container">
   {% for message in messages %}
-  {% if message %}
-    <div class="alert alert-{{ message.tags }}">
-      {{ message }}
-    </div>
-  {% endif %}
+    {% include "components/alert.html" with label=message  %}
   {% endfor %}
+  </div>
 
   {% comment %} Formularz dla logowania użytkownika  {% endcomment %}
-  <form method = "POST" action = "">
+  <section class="form-wrapper">
+  <form method = "POST" action = "" class="form">
+    <div class="form-header">
+      <caption>User dashboard</caption>
+      <h2>Auth required</h2>
+    </div>
+
     <div class="form-group">
       {% csrf_token %}
-      <label for="inputusername">Nazwa użytkownika:</label>
-      <div>
-            <input type="text" id="inputusername" name="username" placeholder="Wprowadź nazwę użytkownika"/>
-      </div>
+      <label for="inputusername">Nazwa użytkownika</label>
+      <input type="text" id="inputusername" name="username"/>
     </div>
     
     <div class="form-group">
-      <label for="inputpassword">Hasło: </label>
-      <div>
-            <input type="password" id="inputpassword" name="password"  placeholder="Wprowadź hasło" class="form-control"/>
-      </div>
-      <small id="loginHelp">Nigdy nie podawaj swojejego hasła.</small>
+      <label for="inputpassword">Hasło</label>
+      <input type="password" id="inputpassword" name="password" class="form-control"/>
     </div>
-    <br>
-      <input type="Submit" value="Zaloguj" class="btn btn-dark"/>
+
+      <button type="Submit">Log in</button>
   </form>
+</section>
 </div>
+<style>
+    .alert-container {
+      position: fixed;
+      bottom: 0px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+      max-width: 400px;
+    }
+
+    .form-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 204px);
+    }
+
+    .form {
+      padding: 24px;
+      border: 1px solid var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-group {
+      max-width: 450px;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+</style>
+
 {% endblock content %}
+
+
