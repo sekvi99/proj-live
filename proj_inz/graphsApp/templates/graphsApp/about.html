@@ -1,36 +1,39 @@
 {% extends 'mainLayout.html' %}
 {% block content %} 
 <!-- Eductional Project -->
-{% include "../components/displayBanner.html" with label="About" %}
-<section>
-        <h2>Educational purposes project</h2>
-        <p>Consequat semper viverra nam libero. Ut tristique et egestas quis ipsum suspendisse ultrices gravida. Pharetra pharetra massa massa ultricies mi quis. In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Mauris a diam maecenas sed enim ut sem viverra.</p>
-        <button style="width: fit-content">Source Code</button>
-</section>
+<div class="easy_readable">
+    {% include "../components/displayBanner.html" with label="About" %}
+    <section>
+            <h2>Educational purposes project</h2>
+            <p>Consequat semper viverra nam libero. Ut tristique et egestas quis ipsum suspendisse ultrices gravida. Pharetra pharetra massa massa ultricies mi quis. In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Mauris a diam maecenas sed enim ut sem viverra.</p>
+            <button style="width: fit-content">Source Code</button>
+    </section>
 
-<!-- Tech Stack -->
-<section class="section-techstack">
-    <div class="section-techstack-description">
-        <h2>Tech Stack</h2>
-        <p>In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc.</p>
-    </div>
-    <div class="section-techstack-list">
-    {% for item in techstack %}
-        {% include "../components/accordion.html" with title=item.title body=item.body  %}
-    {% endfor %}
-    </div>
-</section>
-<br>
-<!-- Authors -->
-<section>
-    <div class="section-techstack-description">
-    <h3>Authors</h3>
-    <p>Project created by people listed below</p>
+    <!-- Tech Stack -->
+    <section class="section-techstack">
+        <div class="section-techstack-description">
+            <h2>Tech Stack</h2>
+            <p>In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc.</p>
+        </div>
+        <div class="section-techstack-list">
+        {% for item in techstack %}
+            {% include "../components/accordion.html" with title=item.title body=item.body  %}
+        {% endfor %}
+        </div>
+    </section>
+    
+
+    <!-- Authors -->
+    <section>
+        <div class="section-techstack-description">
+            <h2>Authors</h2>
+            <p>Silesian University of Technology in Gliwice, Faculty of Applied Mathematics, majoring in Computer Science</p>
+        </div>
+        {% for author in authors %}
+            {% include "../components/listItemPerson.html" with name=author.name  %}
+        {% endfor %}
+    </section>
 </div>
-    {% for author in authors %}
-        {% include "../components/listItemPerson.html" with name=author.name  %}
-    {% endfor %}
-</section>
 <style>
     .section-techstack-list {
         padding: 24px;

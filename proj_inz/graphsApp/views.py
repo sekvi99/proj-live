@@ -89,7 +89,12 @@ def about_authors(request):
     techstack: Final[list] = [
         {'title': 'Accordion #1', 'body': 'Example body string 1.'},
         {'title': 'Accordion #2', 'body': 'Massa tempor nec feugiat nisl pretium. In arcu cursus euismod quis viverra nibh cras. Orci porta non pulvinar neque laoreet suspendisse. A lacus vestibulum sed arcu non. Semper quis lectus nulla at volutpat diam ut venenatis tellus.'},
-        {'title': 'Accordion #3', 'body': 'Example body string 3.'}
+        {'title': 'Accordion #3', 'body': 'Example body string 3.'},
+        {'title': 'Accordion #4', 'body': 'Example body string 4.'},
+        {'title': 'Accordion #5', 'body': 'Example body string 5.'},
+        {'title': 'Accordion #6', 'body': 'Example body string 6.'},
+        {'title': 'Accordion #7', 'body': 'Example body string 7.'},
+        {'title': 'Accordion #8', 'body': 'Example body string 8.'}
     ]
     context = {
         'authors':authors,

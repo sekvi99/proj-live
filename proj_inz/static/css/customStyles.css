@@ -50,8 +50,16 @@
 }
 
 body {
-    max-width: 900px;
+    
     margin: 0  auto;
+}
+
+.easy_readable {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 /* Layout FlexBox helpers */
@@ -90,7 +98,7 @@ h2 {
     font-size: 36px;
     font-family: var(--font-display);
     font-weight: 700;
-    text-align: center;
+    text-align: left;
 }
 
     /* Title */
