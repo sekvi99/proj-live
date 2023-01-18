@@ -33,6 +33,7 @@ def home(request):
         stock_model = get_model_by_name('stockexchange')
         data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto] + \
             [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
+        print("test", data)
     except Exception:
         pass
         

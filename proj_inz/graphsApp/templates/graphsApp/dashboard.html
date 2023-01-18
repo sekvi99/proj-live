@@ -1,5 +1,4 @@
 {% extends 'mainLayout.html' %} 
-<!DOCTYPE html>
 {% comment %} 
 <!-- Lista importów języka Jinja -->
 {% endcomment %}
@@ -10,65 +9,92 @@
 {% include "../components/displayBanner.html" with label="Dashboard" %}
 {% include 'graphsApp/navbar.html' %}
     
-<!-- Table Header -->
-<div>
-    <!-- Stock Prices and Update Date -->
-    <div>
-        <h2></h2>
-        <small></small>
-    </div>
-    <!-- Action buttons -->
-    <div>
-        <button></button>
-        <button></button>
-    </div>
-</div>
-<!-- Toolbar -->
-<div>
-    <!-- Searchbox -->
-    <div>
-        <input type="search">
-    </div>
-    <!-- Input fields -->
-    <div>
-        <!-- Favorite Currencies -->
-        <input type="checkbox">
-        <!-- PLN and Hour Input fields -->
-        <input type="select" name="currency">
-        <input type="select" name="timestamp">
-    </div>
-</div>
-<br>
 <!-- Table For Displaying data -->
 <!-- TODO rozwiaznie obrazkow i propertisow w tabeli -->
 <!-- https://stackoverflow.com/questions/9961046/django-template-displaying-images-in-table -->
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-            {% for header_name in headers %}
-                <th>{{header_name}}</th>
-            {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for dict in json_file %}
-            {% if dict.symbol in unqiue_crypto %}
+<section class="table-section">
+    <div class="table-toolbar">
+        <div>
+            <h3>Stock prices</h3>
+            <caption>Last update 22.02.2022 13:45</caption>
+        </div>
+        <div>
+            <button>Auto-refresh</button>
+            <button>Refresh</button>
+        </div>
+    </div>
+    <div class="table-toolbar">
+        <div>
+            <input type="search" placeholder="Search..."/>
+        </div>
+        <div>
+            <button>Auto-refresh</button>
+            <button>Refresh</button>
+        </div>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
                 <tr>
-                    {% for key, value in dict.items %}
-                            <td><a href="data/cryptocurrencies/{{dict.symbol}}" >{{value}}</a></td>
-                    {% endfor %}
+                {% for header_name in headers %}
+                    <th>{{header_name}}</th>
+                {% endfor %}
                 </tr>
-            {% else %}
-                <tr>
-                    {% for key, value in dict.items %}
-                            <td><a href="data/stockexchange/{{dict.symbol}}" >{{value}}</a></td>
-                    {% endfor %}
-                </tr>
-            {% endif %}
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {% for dict in json_file %}
+                {% if dict.symbol in unqiue_crypto %}
+                    <tr>
+                        {% for key, value in dict.items %}
+                                <td><a href="data/cryptocurrencies/{{dict.symbol}}" >{{value}}</a></td>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        {% for key, value in dict.items %}
+                                <td><a href="data/stockexchange/{{dict.symbol}}" >{{value}}</a></td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<style>
+    table {
+        width: 100%;
+    }
+    tbody {
+        /* background: orange; */
+    }
+    thead {
+        text-align: left;
+    }
+    tr {
+        height: 56px;   
+        cursor: help;
+    }
+    .table-container {
+        /* background-color: blueviolet; */
+        border-top: 1px solid var(--text)
+    }
+    .table-section {
+        max-width: 1536px;
+        margin: 0 auto;
+    }
+
+    .table-toolbar {
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+<script>
+    // const test = {table_name:"{{table_name}}", data:"{{data}}", situation_message: "{{situation_message}}", currency_description: "{{currency_description}}", form: "{{form}}", calc_value: "{{calc_value}}", table_values: "{{table_values}}", table_keys: "{{table_keys}}", graph: "{{graph}}" }
+    const test = {table_name: "{{table_name}}", headers: "{{headers}}", json_file: "{{json_file}}", unqiue_crypto: "{{unqiue_crypto}}", unique_stock: "{{unique_stock}}" }
+    console.log(test);
+</script>
 
 {% endblock content %}

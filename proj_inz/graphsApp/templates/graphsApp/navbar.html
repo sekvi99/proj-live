@@ -1,9 +1,26 @@
 <!-- Resuable component for  navbar -->
 <nav>
-    <a href="cryptocurrencies"><button class="navLink">Cryptocurrency</button></a>
-    <a href="stockexchange"><button class="navLink">Stock</button></a>
+    <a href="cryptocurrencies"><button class="navLink" id="crypto">Cryptocurrency</button></a>
+    <a href="stockexchange"><button class="navLink" id="stock">Stock</button></a>
     
 </nav>
+
+<script>
+    // FIXME: refaktoryzacja funkcji
+    const x = document.getElementById("crypto")
+    const y = document.getElementById("stock")
+    if (location.pathname === '/cryptocurrencies') {
+        x.className += " choosen"
+        y.className = y.className.replace(" choosen", "");
+        
+    } else if (location.pathname === '/stockexchange'){
+        x.className += " choosen"   
+        y.className = y.className.replace(" choosen", "");
+    } else {
+        x.className = x.className.replace(" choosen", "");
+        y.className = y.className.replace(" choosen", "");
+    }
+</script>
 <style>
     nav {
     display: flex;
@@ -11,6 +28,10 @@
     align-items: center;
     gap: 16px;
 
+    }
+    .choosen {
+        background-color: var(--primary-light)!important;
+        border-bottom: 2px solid var(--primary-dark)!important;
     }
 
     .navLink  {
@@ -26,6 +47,5 @@
     .navLink:hover {
         background-color: var(--primary-light)!important;
         border-bottom: 2px solid var(--primary-dark);
-        
     }
 </style>
