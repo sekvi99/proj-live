@@ -1,32 +1,60 @@
-{% extends 'base.html' %}
+{% extends 'mainLayout.html' %}
 {% block content %} 
-<!-- Eductional prooject section -->
-{% include "graphsApp/displayBanner.html" with label="About" %}
-<div>
-    <h3>Educational purposes project</h3>
-</div>
-<!-- Tech Stack -->
-<div>
-    <h3>Tech Stack</h3>
-    <!-- TODO Fullfill the tech stack of the project -->
-</div>
-<br>
-<!-- TODO Accordion box -->
-<!-- https://www.w3schools.com/howto/howto_js_accordion.asp -->
-<!-- https://supfort.com/pure-css-accordion-without-javascript -->
-<div>
+<!-- Eductional Project -->
+{% include "../components/displayBanner.html" with label="About" %}
+<section>
+        <h2>Educational purposes project</h2>
+        <p>Consequat semper viverra nam libero. Ut tristique et egestas quis ipsum suspendisse ultrices gravida. Pharetra pharetra massa massa ultricies mi quis. In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Mauris a diam maecenas sed enim ut sem viverra.</p>
+        <button style="width: fit-content">Source Code</button>
+</section>
 
-</div>
+<!-- Tech Stack -->
+<section class="section-techstack">
+    <div class="section-techstack-description">
+        <h2>Tech Stack</h2>
+        <p>In est ante in nibh mauris cursus mattis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc.</p>
+    </div>
+    <div class="section-techstack-list">
+    {% for item in techstack %}
+        {% include "../components/accordion.html" with title=item.title body=item.body  %}
+    {% endfor %}
+    </div>
+</section>
 <br>
 <!-- Authors -->
-<div>
+<section>
+    <div class="section-techstack-description">
     <h3>Authors</h3>
     <p>Project created by people listed below</p>
-    {% for author in authors %}
-    <div>
-        <p>{{author.name}}</p>
-        <p>{{author.second_name}}</p>
-    </div>
-    {% endfor %}
 </div>
+    {% for author in authors %}
+        {% include "../components/listItemPerson.html" with name=author.name  %}
+    {% endfor %}
+</section>
+<style>
+    .section-techstack-list {
+        padding: 24px;
+        border: 1px solid var(--text);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .section-techstack-description {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+
+</style>
+
+
+
 {% endblock content %}

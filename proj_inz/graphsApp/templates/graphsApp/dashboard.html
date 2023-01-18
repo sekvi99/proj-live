@@ -1,13 +1,13 @@
-{% extends 'base.html' %} 
+{% extends 'mainLayout.html' %} 
 <!DOCTYPE html>
 {% comment %} 
 <!-- Lista importów języka Jinja -->
 {% endcomment %}
 {% load static %}
-{% include 'base.html' %}
+{% include 'mainLayout.html' %}
 {% block content %}
 <!-- Apps Name and Logout button -->
-{% include "graphsApp/displayBanner.html" %}
+{% include "../components/displayBanner.html" with label="Dashboard" %}
 {% include 'graphsApp/navbar.html' %}
     
 <!-- Table Header -->

@@ -1,0 +1,22 @@
+<div class="list_item_person_container">
+    <div class="img_bg"><img src="" alt="{{name}}" /></div>
+    <p>{{ name }}</p>
+</div>
+<style>
+    .img_bg {
+        width: 64px;
+        height: 64px;
+        background-color: var(--grey);
+    }
+    .img_bg > img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    .list_item_person_container {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+</style>

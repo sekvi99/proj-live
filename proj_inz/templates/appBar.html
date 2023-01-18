@@ -1,9 +1,9 @@
 {% load static %}
-<div class="flex space-between">
+<header class="flex space-between">
     <a href="{% url 'graphsApp:home'  %}" class="a-logo">
         <div class="flex align-items-center">
             <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
-            <h1>IntelOPS</h1>
+            <h1>IntellOPS</h1>
         </div>
     </a>
     
@@ -20,4 +20,33 @@
         </a>
     </div>
     {% endif %}
-</div>
+</header>
+<style>
+
+    #appbar-logo {
+        width: 36px;
+        height: 36px;
+        padding: 4px;
+        background-color: var(--grey);
+        margin-right: 4px;
+    }
+
+    #appbar-logo:hover {
+        
+    }
+
+    .a-logo {
+        text-decoration: none!important;
+        color: var(--text)!important;
+    }
+
+    .a-logo > div> h1 {
+        font-size: 28px!important;
+        font-family: var(--font-display);
+    }
+
+    .a-logo:hover {
+        color: var(--green)!important;
+        text-decoration: solid;
+    }
+</style>

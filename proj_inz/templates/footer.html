@@ -1,5 +1,14 @@
 <!-- Footer to extend -->
 <footer>
     <caption>Educational project</caption>
-    <a href="{% url 'graphsApp:authors'  %}" style="font-weight: 700">About</a>
+    <a href="{% url 'graphsApp:authors'  %}">About</a>
 </footer>
+<style>
+    footer {
+        display: flex;
+        flex-direction: column;
+    }
+    footer > a {
+        font-weight: 700
+    }
+</style>

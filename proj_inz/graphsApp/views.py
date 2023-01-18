@@ -82,12 +82,18 @@ def about_authors(request):
     Function view for 'authors'
     """
     authors: Final[list] = [
-        {'name':'Filip', 'second_name':'Kozlik'},
-        {'name':'Wojciech', 'second_name':'Kubak'},
-        {'name':'Wojciech', 'second_name':'Harmata'},
+        {'name':'Filip Koźlik', 'second_name':'Kozlik'},
+        {'name':'Wojciech Kubak', 'second_name':'Kubak'},
+        {'name':'Wojciech Harmata', 'second_name':'Harmata'},
+    ]
+    techstack: Final[list] = [
+        {'title': 'Accordion #1', 'body': 'Example body string 1.'},
+        {'title': 'Accordion #2', 'body': 'Massa tempor nec feugiat nisl pretium. In arcu cursus euismod quis viverra nibh cras. Orci porta non pulvinar neque laoreet suspendisse. A lacus vestibulum sed arcu non. Semper quis lectus nulla at volutpat diam ut venenatis tellus.'},
+        {'title': 'Accordion #3', 'body': 'Example body string 3.'}
     ]
     context = {
         'authors':authors,
+        'techstack': techstack,
     }
     return render(request, 'graphsApp/about.html', context)
 

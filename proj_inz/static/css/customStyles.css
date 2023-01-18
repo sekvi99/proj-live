@@ -49,6 +49,11 @@
     
 }
 
+body {
+    max-width: 900px;
+    margin: 0  auto;
+}
+
 /* Layout FlexBox helpers */
 .flex {
     display: flex;
@@ -68,11 +73,11 @@
 
 /* Temporary layout align helper */
 div:first-child {
-    outline: 1px solid red;  
+    outline: 1px solid transparent;  
 }
 
 div > div {
-    border: 1px solid greenyellow;
+    border: 1px solid transparent;
 }
 
 
@@ -96,12 +101,11 @@ h3 {
 }
 
 
-    * Appname && Subtitle */
-h3, h1 {
+    /* Subtitle */
+h3 {
     font-size: 28px;
-    font-family: var(--font-display);
-    
-},
+    font-family: var(--font-display);   
+}
 
     /* Body */
 p {
@@ -137,12 +141,14 @@ button {
 	padding: 12px 12px;
 	text-align: center;
 	text-decoration: none;
+    text-transform: uppercase;
 	white-space: nowrap;
 	border: 0;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: #DBFFAC;
+    background-color: var(--green);
 }
 
 
@@ -152,56 +158,6 @@ caption {
     font-weight: 500;
 }
 
-
-/* Navbar styles */
-
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-
-}
-
-.navLink  {
-    background-color: transparent;
-    border-bottom: 2px solid transparent;
-    font-size: 22px;
-    padding: 8px 12px;
-    color: var(--text)!important;
-}
-
-
-.navLink:hover {
-    background-color: var(--primary-light)!important;
-    border-bottom: 2px solid var(--primary-dark);
-    
-}
-
-
-/* Appbar logo styles */
-
-#appbar-logo {
-    width: 36px;
-    height: 36px;
-    padding: 4px;
-    background-color: var(--grey);
-    margin-right: 4px;
-}
-
-
-
-.a-logo {
-    text-decoration: none!important;
-    color: var(--text)!important;
-}
-
-
-.a-logo:hover {
-    color: var(--blue)!important;
-    text-decoration: solid;
-    
-}
 
 
 /* Link stylees */
@@ -218,15 +174,6 @@ a:-webkit-any(a) {
 }
 
 
-
-/* Footer styles */
-
-
-footer {
-    display: flex;
-    flex-direction: column;
-    
-}
 
 /* Table styles */
 

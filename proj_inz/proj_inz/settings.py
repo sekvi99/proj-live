@@ -94,14 +94,15 @@ WSGI_APPLICATION = 'proj_inz.wsgi.application'
 
 # ! Credential template for railway pg connection (container works 24h): https://railway.app
 # ! Additional psycopg2 package must be installed + few modules update (https://trello.com/c/1mHi2QiF/12-requirements-virtual-enviroment)
+# FIXME: Credentials over here
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway', 
         'USER': 'postgres',
-        'PASSWORD': 'EOxLaxmg5GZfOsrWWSha',
-        'HOST': 'containers-us-west-39.railway.app', 
-        'PORT': '7769',
+        'PASSWORD': 'mPEcqMfzeiS9Q62chkq1',
+        'HOST': 'containers-us-west-144.railway.app', 
+        'PORT': '5639',
     }
 }
 
