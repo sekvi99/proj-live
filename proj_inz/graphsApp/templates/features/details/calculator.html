@@ -1,0 +1,77 @@
+ <section>
+    <h2>Calculator</h2>
+    <div class="group1">
+        <div class="group2">
+            <label for="ammount">Ammount</label>
+            <input type="number" id="ammount" oninput="handleCalc()" value="1"/>
+        </div>
+        <div class="group2">
+            <label for="to_currency">Exchange to</label>
+                <select name="to_currency" id="to_currency">
+                    <option value="gbp">GBP</option>
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                </select>
+        </div>
+    </div>
+    <div class="group3">
+        <!-- <button onclick="handleClick()">Calc</button> -->
+        <label>Result</label>
+        <h1 id="result"></h1>
+    </div>
+</section>
+<style>
+    select {
+        border-radius: 2px;
+        border: 2px solid var(--text);
+        padding: 16px;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 0em;
+        text-align: left;
+        width:100%
+    }
+
+
+
+    .group1 {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .group2 {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary-light);
+        width: 100%;
+    }
+
+    .group3 {
+        text-align:center
+    }
+
+    #result {
+        padding-top: 8px;
+    }
+</style>
+<script>
+    const exchange = JSON.parse("{{exchange_rates|escapejs}}");
+    
+    function handleCalc() {
+        const i_ammount = document.getElementById('ammount');
+        let ammount = i_ammount.value;
+
+        const i_to_currency = document.getElementById('to_currency');
+        let to_currency = i_to_currency.value;
+
+        
+        let result = (exchange.value / exchange[to_currency]) * ammount;
+        const o_result = document.getElementById('result');
+        o_result.innerHTML = `${result.toFixed(2)} ${to_currency.toUpperCase()}`;   
+    }
+    
+    handleCalc()
+</script>

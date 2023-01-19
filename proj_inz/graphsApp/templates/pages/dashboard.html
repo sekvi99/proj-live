@@ -1,17 +1,10 @@
- {% extends 'mainLayout.html' %} 
-{% comment %} 
-<!-- Lista importów języka Jinja -->
-{% endcomment %}
-{% load static %}
+{% extends 'mainLayout.html' %} 
 {% include 'mainLayout.html' %}
+
 {% block content %}
-<!-- Apps Name and Logout button -->
 {% include "../components/displayBanner.html" with label="Dashboard" %}
-{% include 'graphsApp/navbar.html' %}
-    
-<!-- Table For Displaying data -->
-<!-- TODO rozwiaznie obrazkow i propertisow w tabeli -->
-<!-- https://stackoverflow.com/questions/9961046/django-template-displaying-images-in-table -->
+{% include 'layouts/navbar.html' %}
+
 <section class="table-section">
     <div class="table-toolbar">
         <div>
@@ -39,6 +32,7 @@
                 </select>
         </div>
     </div>
+    {%if json_file %}
     <div class="table-container">
         <table id="dashboardTable">
             <thead>
@@ -67,6 +61,7 @@
             </tbody>
         </table>
     </div>
+    {% endif %}
 </section>
 <style>
     table {

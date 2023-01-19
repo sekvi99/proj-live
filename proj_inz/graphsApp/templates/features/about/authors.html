@@ -1,0 +1,23 @@
+ <!-- Authors -->
+ <section>
+    <div class="group1">
+        <h2>Authors</h2>
+        <p>Silesian University of Technology in Gliwice, Faculty of Applied Mathematics, majoring in Computer Science</p>
+    </div>
+    {% for author in authors %}
+        {% include "../../components/listItemPerson.html" with name=author.name  %}
+    {% endfor %}
+</section>
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+    }
+    .group1 {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+</style>

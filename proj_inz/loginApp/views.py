@@ -5,26 +5,26 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 """
-W tym pliku znajdujue się opis widoków, które są odpowiedzialne za obsłużenie systemu logowania użytkownika
-W projekcie przyjeliśmy założenie function-based-view (czyli zachowania opisujemy z pomocą funkcji)
+In this file you will find a description of the views that are responsible for handling the user login system
+In the project we adopted the function-based-view assumption (i.e. we describe behavior with the help of functions)
 """
 
 
 """
-Funkcja login jest odpowiedzialna za poprawne obsłużenie logowania użytkownika do aplikacji
+The login function is responsible for the correct handling of user login to the application
 
-1. Na początku sprawdzamy czy użytkownik jest authenticated tzn. czy posiada token, który umożliwia dostęp do aplikacji.
-1a) Jeżeli użytkownik jest już zalogowany to jest on przekierowywane na stronę home, w aplikacji graps (Nie ma potrzeby ponownego logowania użytkownika).
-1b) W przeciwynm przypadku przechodzimy dalej -> gdyż wiemy, że utkownik nie jest zalogowany
-2. Następnie sprawdzamy typ requesta, który przychodzi do aplikacji, chcemy obsłużyć POST. ==> Jeżeli jest to post, to pobieramy zawartość danych podanych w formularzu.
-3. Następnie staramy znaleźć się użytkownika o podanych danych logowania w bazie. ==> Jeżeli taki istnieje, to logujemy użytkownika w przeciwnym razie zwracamy stosowny komunikat.
+1 First, we check if the user is authenticated i.e. has a token that allows access to the application.
+1a) If the user is already logged in then he is redirected to the home page, in the graps application (There is no need to log the user in again).
+1b) In the opposite case we move on -> because we know that the user is not logged in
+2) Then we check the type of request that comes to the application, we want to handle POST. ==> If it is a post, we retrieve the content of the data given in the form.
+3.Then we try to find the user with the given login data in the database. ==> If such exists, we log the user in otherwise we return the appropriate message.
 
-Funkcja na wyjściu zwraca obiekt render, który składa się z:
-1. Request'a,
-2. Nazwy template'a, który ma zostać wygenerowany po połączeniu się z danym url'em,
-3. Obiekt context => słownik, z danymi który przekazujemy do template'a.
+The function on the output returns a render object, which consists of:
+1. the request,
+2. the name of the template to be generated after connecting to the given url,
+3. the context object => a dictionary, with the data that we pass to the template.
 """
-# ! Obsługa logowania użytkownika
+# ! User login support
 def login_page(request):
   table_name = 'Login'
   if request.user.is_authenticated:
@@ -51,15 +51,11 @@ def login_page(request):
     return render(request, 'login.html', context)
 
 """
-Funkcja logout z użyciem gotowej metody logout usuwa w rzeczywistości token uwietrzylniający i przekierowuje użytkownika na inną stronę
+The logout function using the ready-made logout method actually removes the weatherization token and redirects the user to another page
 """
-# ! Obsługa wylogowywania użytkownika
+# ! User logout support
 def logout_page(request):
-    table_name = 'Strona Wyjściowa'
-
-    if User is not None:
-      logout(request)
-      messages.success(request, "Pomyślnie wylogowano!")
-      return redirect('login_App:login')
-    context = {'table_name':table_name}
-    return render(request, 'logout.html', context)
+  
+    logout(request)
+    messages.success(request, "Pomyślnie wylogowano!")
+    return redirect('login_App:login')

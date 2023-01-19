@@ -1,0 +1,14 @@
+{% extends 'mainLayout.html' %} 
+{% comment %} 
+<!-- Lista importów języka Jinja -->
+{% endcomment %}
+{% load static %}
+{% include 'mainLayout.html' %}
+{% block content %}
+<!-- Apps Name and Logout button -->
+{% include "../components/displayBanner.html" with label="Dashboard" %}
+{% include 'layouts/navbar.html' %}
+
+{% block content %}     
+    <!-- <slot /> -->
+{% endblock content %}

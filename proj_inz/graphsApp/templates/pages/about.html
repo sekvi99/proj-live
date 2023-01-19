@@ -1,0 +1,10 @@
+{% extends 'mainLayout.html' %}
+
+{% block content %} 
+{% include "../components/displayBanner.html" with label="About" %}
+<div class="easy_readable">
+    {% include "../features/about/purposes.html" %}
+    {% include "../features/about/techstack.html" %}
+    {% include "../features/about/authors.html" %}
+</div>
+{% endblock content %}

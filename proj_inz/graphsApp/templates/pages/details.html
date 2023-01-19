@@ -1,0 +1,12 @@
+{% extends 'mainLayout.html' %}
+{% include 'mainLayout.html' %}
+
+{% block content %}
+    {% include "../components/displayBanner.html" with label=table_name %}
+    <div class="easy_readable">
+        {% include "../features/details/market.html" %}
+        {% include "../features/details/calculator.html" %}
+        {% include "../features/details/about_project.html" %}
+        {% include "../features/details/history.html" %}
+    </div>
+{% endblock %}

@@ -143,7 +143,6 @@ button {
     font-size: 18px;
     font-weight: 700;
     font-family: var(--font-display);
-    background-color: var(--primary-main);
     color: var(--primary-dark);
     
     border-radius: 0;
@@ -162,6 +161,13 @@ button:hover {
     background-color: var(--green);
 }
 
+.btn-contained {
+    background-color: var(--primary-main);
+}
+
+.btn-outlined {
+    border: 1px solid var(--primary-dark);
+}
 
 
 caption {

@@ -1,0 +1,60 @@
+ <!-- Section for data preview -->
+<!-- FIXME: po co to komu skoro i jest wykres powyzej? -->
+<section>
+    <h2>History</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                {% for header_name in table_keys %}
+                    <th>{{header_name}}</th>
+                {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for dict in table_values %}
+                    <tr>
+                        {% for key, value in dict.items %}
+                            <td>{{value}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<style>
+    th {
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+    }
+    tbody {
+        /* background: orange; */
+    }
+    thead {
+        text-align: left;
+    }
+    tr {
+        height: 56px;   
+        cursor: help;
+    }
+    .table-container {
+        /* background-color: blueviolet; */
+        border: 1px solid transparent;
+        overflow-x: auto;
+    }
+    .table-section {
+        max-width: 1536px;
+        margin: 0 auto;
+    }
+
+    .table-toolbar {
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>

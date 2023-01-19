@@ -1,0 +1,34 @@
+<section>
+    <h2>Market</h2>
+    {% autoescape off %}
+        {{ graph }}
+    {% endautoescape %} 
+    <script src="" async defer></script>
+    <h3>Market Stats</h3>
+    <div class="grid">
+        <!-- Save list of keys in backed -->
+        {% for key, value in data.items %}
+            {% include "../../components/dataKeyValue.html" with key=key value=value  %}
+        {% endfor %}
+    </div>
+    <!-- Situation about currency this week -->
+    <h3>{{table_name}} in last days</h3>
+    <!-- Property from coinbase object -->
+    <p>In last days value of {{table_name}} changed about {{situation_message}}%</p>
+</section>
+<style>
+    .grid {  
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* grid-template-rows: 1fr 1fr 1fr; */
+        gap: 16px 0px;
+        grid-auto-flow: row dense;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+    }
+</style>

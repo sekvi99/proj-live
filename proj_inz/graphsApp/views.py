@@ -1,6 +1,6 @@
 from cgi import test
 from locale import currency
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.apps import apps
 from .forms import calculatorForm
@@ -36,7 +36,8 @@ def home(request):
             [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
         print("test", data)
     except Exception:
-        pass
+        data = None
+        return redirect('graphsApp:home')
         
     
     keys = ['Data', 'Wartość', 'Znacznik']
@@ -46,7 +47,9 @@ def home(request):
               'unqiue_crypto':unqiue_crypto,
               'unique_stock':unique_stock,
               }
-    return render(request, 'graphsApp/dashboard.html',context)
+    return render(request, 'pages/dashboard.html',context)
+
+# /stockexchange/
 
 @login_required(login_url='/login/')
 def filtered_home_view(request, datatype: str) -> render:
@@ -65,8 +68,11 @@ def filtered_home_view(request, datatype: str) -> render:
         elif datatype == 'stockexchange':
             stock_model = get_model_by_name('stockexchange')
             data = [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
+        else:
+            return redirect('graphsApp:home')
     except Exception:
-        pass
+        data = None
+        return redirect('graphsApp:home')
         
     
     keys = ['Data', 'Wartość', 'Znacznik']
@@ -76,7 +82,7 @@ def filtered_home_view(request, datatype: str) -> render:
               'unqiue_crypto':unqiue_crypto,
               'unique_stock':unique_stock,
               }
-    return render(request, 'graphsApp/dashboard.html',context)
+    return render(request, 'pages/dashboard.html',context)
 
 @login_required(login_url='/login/')
 def about_authors(request):
@@ -102,7 +108,7 @@ def about_authors(request):
         'authors':authors,
         'techstack': techstack,
     }
-    return render(request, 'graphsApp/about.html', context)
+    return render(request, 'pages/about.html', context)
 
 
 # def item_details(request, item, category) FIXME: <-jak tutaj nazwy properties
@@ -141,7 +147,7 @@ def data_view(request, tablename: str, symbol: str):
         'graph': graph,
         'exchange_rates': dumps(exchange_rates)
     })
-    return render(request, 'graphsApp/detailsPage.html', context)
+    return render(request, 'pages/details.html', context)
 
 
 # @login_required(login_url='/login/')
@@ -195,5 +201,5 @@ def data_view(request, tablename: str, symbol: str):
 #         'table_keys':table_keys,
 #         'graph': graph
 #     })
-#     return render(request, 'graphsApp/detailsPage.html', context)
+#     return render(request, 'pages/detailsPage.html', context)
     
