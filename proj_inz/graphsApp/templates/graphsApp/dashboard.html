@@ -28,8 +28,13 @@
             <input type="search" placeholder="Search..."/>
         </div>
         <div>
-            <button>Auto-refresh</button>
-            <button>Refresh</button>
+            <label for="cars">Choose a car:</label>
+                <select name="cars" id="cars">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
         </div>
     </div>
     <div class="table-container">
@@ -90,6 +95,11 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    input[type=search] {
+        border-radius: 100px;
+    }
+
 </style>
 <script>
     // const test = {table_name:"{{table_name}}", data:"{{data}}", situation_message: "{{situation_message}}", currency_description: "{{currency_description}}", form: "{{form}}", calc_value: "{{calc_value}}", table_values: "{{table_values}}", table_keys: "{{table_keys}}", graph: "{{graph}}" }

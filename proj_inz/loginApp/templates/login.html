@@ -8,12 +8,6 @@
 Kontener na wiadomości w przypadku nieudanego zalgoowania
 {% endcomment %}
 <div>
-  <div class="alert-container">
-  {% for message in messages %}
-    {% include "components/alert.html" with label=message  %}
-  {% endfor %}
-  </div>
-
   {% comment %} Formularz dla logowania użytkownika  {% endcomment %}
   <section class="form-wrapper">
   <form method = "POST" action = "" class="form">
@@ -38,16 +32,6 @@ Kontener na wiadomości w przypadku nieudanego zalgoowania
 </section>
 </div>
 <style>
-    .alert-container {
-      position: fixed;
-      bottom: 0px;
-      padding: 24px;
-      display: flex;
-      gap: 16px;
-      flex-direction: column;
-      max-width: 400px;
-    }
-
     .form-wrapper {
       width: 100%;
       display: flex;

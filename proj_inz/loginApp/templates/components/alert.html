@@ -1,12 +1,32 @@
-<div class="alert alert-{{ label.tags }}">
+<div class="alert alert-{{ label.tags }}" id="{{label}}">
     <span class="material-symbols-outlined">
-      warning
+      report
     </span> 
     <caption>
-    {{ label }}
+      {{ label   }}
     </caption>
 </div>
+<script>
+
+  let prop = "{{label}}";
+  console.log(prop)
+  
+  function handleAlert(id) {
+    let z = document.getElementById(id)
+    
+    setInterval(() => {
+      z.className += " hide_alert";
+    }, 10000);
+  }
+  
+  handleAlert(prop);
+</script>
 <style>
+
+    .hide_alert {
+      display: none!important;
+    }
+
     .alert {
       background: var(--alert-box);
       padding: 12px;
@@ -14,7 +34,8 @@
       flex-direction: row;
       align-items: center;
       gap: 12px;
-      color: var(--background)
+      color: var(--background);
+      max-width: 400px;
     }
   
     .alert > span {

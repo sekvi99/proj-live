@@ -11,10 +11,14 @@
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
-    {% include "appbar.html" %}
-    
-    
+    {% include "appbar.html" %}    
     <div>
+      <div class="alert-container">
+        {% for message in messages %}
+          {% include "components/alert.html" with label=message  %}
+        {% endfor %}
+        </div>
+      
         {% block content %}     
         {% endblock content %}
     </div>
@@ -22,5 +26,14 @@
   </body>
 </html>
 <style>
-  
+    .alert-container {
+      position: fixed;
+      bottom: 0px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+      max-width: 400px;
+    }
+
 </style>

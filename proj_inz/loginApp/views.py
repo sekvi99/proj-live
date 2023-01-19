@@ -56,6 +56,10 @@ Funkcja logout z użyciem gotowej metody logout usuwa w rzeczywistości token uw
 # ! Obsługa wylogowywania użytkownika
 def logout_page(request):
     table_name = 'Strona Wyjściowa'
-    logout(request)
+
+    if User is not None:
+      logout(request)
+      messages.success(request, "Pomyślnie wylogowano!")
+      return redirect('login_App:login')
     context = {'table_name':table_name}
     return render(request, 'logout.html', context)
