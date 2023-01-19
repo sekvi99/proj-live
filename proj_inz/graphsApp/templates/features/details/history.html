@@ -1,7 +1,9 @@
  <!-- Section for data preview -->
 <!-- FIXME: po co to komu skoro i jest wykres powyzej? -->
-<section>
-    <h2>History</h2>
+<section class="table-section">
+    <div class="table-toolbar">
+        <h2>History</h2>
+    </div>
     <div class="table-container">
         <table>
             <thead>
@@ -24,28 +26,6 @@
     </div>
 </section>
 <style>
-    th {
-        font-weight: bold;
-    }
-
-    table {
-        width: 100%;
-    }
-    tbody {
-        /* background: orange; */
-    }
-    thead {
-        text-align: left;
-    }
-    tr {
-        height: 56px;   
-        cursor: help;
-    }
-    .table-container {
-        /* background-color: blueviolet; */
-        border: 1px solid transparent;
-        overflow-x: auto;
-    }
     .table-section {
         max-width: 1536px;
         margin: 0 auto;
@@ -57,4 +37,40 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .table-container {
+        border-top: 1px solid var(--text);
+
+    }
+
+    table {
+        width: 100%;
+        overflow-y: visible;
+    }
+
+    tr {
+        height: 56px;   
+        cursor: help;
+    }
+
+    tr:hover {
+        background-color: var(--primary-light);
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    thead {
+        text-align: left;
+    }
+
+    td > a:first-child {
+    display: flex;
+    /* padding: 18px; */
+    text-decoration: none;
+    color: inherit;
+    /* z-index: 0; */
+    }
+  
 </style>

@@ -1,13 +1,13 @@
  <section>
-    <h2>Calculator</h2>
+    <h2>Calculator </h2>
     <div class="group1">
         <div class="group2">
-            <label for="ammount">Ammount</label>
+            <label for="ammount">Ammount of {{ table_name }}</label>
             <input type="number" id="ammount" oninput="handleCalc()" value="1"/>
         </div>
         <div class="group2">
             <label for="to_currency">Exchange to</label>
-                <select name="to_currency" id="to_currency">
+                <select name="to_currency" id="to_currency" onchange="handleCalc()">
                     <option value="gbp">GBP</option>
                     <option value="usd">USD</option>
                     <option value="eur">EUR</option>
@@ -45,7 +45,6 @@
     .group2 {
         display: flex;
         flex-direction: column;
-        background-color: var(--primary-light);
         width: 100%;
     }
 

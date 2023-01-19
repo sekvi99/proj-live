@@ -1,22 +1,25 @@
 <!-- Resuable component for  navbar -->
 <nav>
+    <a href="/" class="a-clear"><label class="navLink" id="all">All</label></a>
     <a href="cryptocurrencies" class="a-clear"><label class="navLink" id="crypto">Cryptocurrency</label></a>
     <a href="stockexchange" class="a-clear"><label class="navLink" id="stock">Stock</label></a>
-    
 </nav>
 
 <script>
-    // FIXME: refaktoryzacja funkcji
+    const z = document.getElementById('all')
     const x = document.getElementById("crypto")
     const y = document.getElementById("stock")
     if (location.pathname === '/cryptocurrencies') {
+        z.className = z.className.replace(" choosen", "");
         x.className += " choosen"
         y.className = y.className.replace(" choosen", "");
         
     } else if (location.pathname === '/stockexchange'){
-        x.className += " choosen"   
-        y.className = y.className.replace(" choosen", "");
+        z.className = z.className.replace(" choosen", "");
+        x.className = x.className.replace(" choosen", "");
+        y.className += " choosen"   
     } else {
+        z.className += " choosen"
         x.className = x.className.replace(" choosen", "");
         y.className = y.className.replace(" choosen", "");
     }

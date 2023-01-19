@@ -12,21 +12,27 @@
 
 ## Alerts
 
-- [] alerts (fixme, wiecej niz jeden na raz javascript!)
-- [] alerts (translacja z pl na ang)
+- [x] alerts (fixme, wiecej niz jeden na raz javascript!)
+- [x] alerts (translacja z pl na ang)
 
 ## Topappbar
 
-- [] topappbar na '/log_in' gdy użytkownik jest na podstronie /log_in to wygląda inaczej
+- [x] topappbar na '/log_in' gdy użytkownik jest na podstronie /log_in to wygląda inaczej
 
 ===WOJTEK===
 
 ## Navbar
 
-- [] navbar
-  (to nie jest filter, tylko nawigacja routes '/crypto' lub '/stock', defaultowo po zalogowaniu wrzuca w jedno albo drugie. Obie podstrony mają swoją własną przestrzeń na tabele (mają inne pola, dlatego separation of concerns))
+- [x] navbar
+      (to nie jest filter, tylko nawigacja routes '/crypto' lub '/stock', defaultowo po zalogowaniu wrzuca w jedno albo drugie. Obie podstrony mają swoją własną przestrzeń na tabele (mają inne pola, dlatego separation of concerns))
 
 ===FILIP===
+
+# select django
+
+w zależności od tego jaki jest model wyswietlanny (all/crypto/stock) to tylko takie opcje select
+
+# podać odpowiednia zmienna do modelu kalkulatora dla przedmiotu typu 'stock'
 
 # django routing
 

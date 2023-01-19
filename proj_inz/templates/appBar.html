@@ -1,7 +1,7 @@
 {% load static %}
 <header class="flex space-between">
-    <a href="{% url 'graphsApp:home'  %}" class="a-logo">
-        <div class="flex align-items-center">
+    <a href="{% url 'graphsApp:home'  %}" class="a-logo logo-out-box">
+        <div class="flex align-items-center logo-box">
             <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
             <h1>IntellOPS</h1>
         </div>
@@ -40,10 +40,6 @@
         margin-right: 4px;
     }
 
-    #appbar-logo:hover {
-        
-    }
-
     .a-logo {
         text-decoration: none!important;
         color: var(--text)!important;
@@ -56,7 +52,7 @@
     }
 
     .a-logo:hover {
-        color: var(--green)!important;
+        color: var(--blue)!important;
         text-decoration: solid;
     }
 </style>
