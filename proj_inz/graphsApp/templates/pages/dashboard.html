@@ -23,6 +23,7 @@
         <div>
             <label for="tagas">Choose a tag:</label>
                 <select name="tags" id="tags">
+                    <option value="" label="All"></option>
                     {% for crypto in unqiue_crypto %}
                     <option value="{{crypto}}">{{crypto}}</option>
                     {% endfor %}

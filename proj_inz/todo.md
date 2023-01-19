@@ -1,8 +1,3 @@
-# API data
-
-- [] extend dane z api (niech pobiera wiecej informacji i niech nie łączy stock'a z crypto, niech to beda osobne strony tak jak w figmie)
-  > postman?
-
 # Table
 
 1. - [x] tabela, filtry i searchbox (biblioteka!)
@@ -12,11 +7,6 @@
      > <!-- TODO rozwiaznie obrazkow i propertisow w tabeli -->
      >
      > [link](https://stackoverflow.com/questions/9961046/django-template-displaying-images-in-table)
-
-# Component: Calculator
-
-- [x] Łapać dane z modelu do java'scriptu i stworzyć kontrolowalny komponent
-  > https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/
 
 # Layout
 
