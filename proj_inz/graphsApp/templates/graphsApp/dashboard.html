@@ -25,15 +25,17 @@
     </div>
     <div class="table-toolbar">
         <div>
-            <input id="searchBox" type="search" placeholder="Search..." onkeyup="handleSearch()"/>
+            <input id="searchBox" type="search" placeholder="Search..."/>
         </div>
         <div>
-            <label for="cars">Choose a car:</label>
-                <select name="cars" id="cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+            <label for="tagas">Choose a tag:</label>
+                <select name="tags" id="tags">
+                    {% for crypto in unqiue_crypto %}
+                    <option value="{{crypto}}">{{crypto}}</option>
+                    {% endfor %}
+                    {% for stock in unique_stock %}
+                    <option value="{{stock}}">{{stock}}</option>
+                    {% endfor %}
                 </select>
         </div>
     </div>
@@ -109,17 +111,21 @@
 
 <script>
 
-    var $rows = $('#dashboardTable tr');
-    $('#searchBox').keyup(function() {
+    const choosePropperRecords = function(){
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-        
+
         $rows.show().filter(function() {
             var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
             return !~text.indexOf(val);
         }).hide();
-    });
+    }
+    var $rows = $('#dashboardTable tr');
+
+    $('#searchBox').keyup(choosePropperRecords);
+    $('#tags').change(choosePropperRecords);
 
 </script>
+
 <script>
 
     // const test = {table_name:"{{table_name}}", data:"{{data}}", situation_message: "{{situation_message}}", currency_description: "{{currency_description}}", form: "{{form}}", calc_value: "{{calc_value}}", table_values: "{{table_values}}", table_keys: "{{table_keys}}", graph: "{{graph}}" }
