@@ -201,11 +201,6 @@ a:-webkit-any(a) {
 
 /* Table styles */
 
-.table-container{
-    /* //border: 3px solid red; */
-    overflow-x: auto;
-}
-
 tr:hover {
     background-color: var(--primary-light);
 }
@@ -222,4 +217,34 @@ td > a:first-child {
 
 th {
     font-weight: bold;
+}
+
+table {
+    width: 100%;
+}
+tbody {
+    /* background: orange; */
+}
+thead {
+    text-align: left;
+}
+tr {
+    height: 56px;   
+    cursor: help;
+}
+.table-container {
+    /* background-color: blueviolet; */
+    border-top: 1px solid var(--text);
+    overflow-x: auto;
+}
+.table-section {
+    max-width: 1536px;
+    margin: 0 auto;
+}
+
+.table-toolbar {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

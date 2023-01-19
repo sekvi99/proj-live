@@ -2,76 +2,74 @@
 {% include 'mainLayout.html' %}
 {% block content %}
 {% load static %}
+{% include "../components/displayBanner.html" with label=table_name %}
+<div class="easy_readable">
     <!-- Data Name that came from backend -->
-    <h1>{{table_name}}</h1> 
-    <br>
-    <h3>Market Stats</h3>
+    
     <!-- Section for market statistics -->
-    <section>
-    <!-- Save list of keys in backed -->
-    {% for key, value in data.items %}
-        <div>
-            <small>{{key}}</small>
-            <!-- https://stackoverflow.com/questions/25675569/how-to-access-properties-of-referenced-objects-in-jinja2-templates-google-app-e -->
-            <p>{{value}}</p> 
+    <section class="section-gap">
+        <h2>Market</h2>
+        {% autoescape off %}
+            {{ graph }}
+        {% endautoescape %} 
+        <script src="" async defer></script>
+        <h3>Market Stats</h3>
+        <div class="grid">
+            <!-- Save list of keys in backed -->
+            {% for key, value in data.items %}
+                {% include "../components/dataKeyValue.html" with key=key value=value  %}
+            {% endfor %}
         </div>
-    {% endfor %}
-    </section>
-    <!-- Situation about currency this week -->
-    <div>
-        <!--  -->
+        <!-- Situation about currency this week -->
         <h3>{{table_name}} in last days</h3>
         <!-- Property from coinbase object -->
         <p>In last days value of {{table_name}} changed about {{situation_message}}%</p>
-    </div>
-    <br>
-    <!-- Section for data preview -->
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                {% for header_name in table_keys %}
-                    <th>{{header_name}}</th>
-                {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for dict in table_values %}
-                    <tr>
-                        {% for key, value in dict.items %}
-                            <td>{{value}}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-<div class="responsive-plot">
-    {% autoescape off %}
-        {{ graph }}
-            
-    {% endautoescape %} 
-    </div>
-    <script src="" async defer></script>
+    </section>
 
     <!-- Section for calculator -->
-    <div>
-        <h1>Calculator</h1>
+    <section>
+        <h2>Calculator</h2>
         <div>
             <form action="" method="post">
                 <!-- Sending authorization token -->
                 {% csrf_token %} 
                 {{form}}
-            <input name="form" type="submit" value="Oblicz"/>
+            <button name="form" type="submit">Calc</button>
             </form>
             {% if calc_value %}
-                <p>{{calc_value}}</p>
+                <label>Result</label>
+                <h1>{{calc_value}}</h1>
             {% endif %}
         </div>
-    </div>
+    </section>
+
+    <!-- Section for data preview -->
+    <section>
+        <h2>History</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                    {% for header_name in table_keys %}
+                        <th>{{header_name}}</th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dict in table_values %}
+                        <tr>
+                            {% for key, value in dict.items %}
+                                <td>{{value}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <!-- Section for about -->
-    <div>
+    <section>
         <!--  -->
         <h3>About</h3>
         <!-- Property from coinbase object -->
@@ -80,6 +78,57 @@
         <h5>Resources</h5> // TODO mapping links
         <a href="#"></a>
         <a href="#"></a>
-    </div>
+    </section>
+</div>
+<style>
+
+    .grid {  
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* grid-template-rows: 1fr 1fr 1fr; */
+        gap: 16px 0px;
+        grid-auto-flow: row dense;
+    }
+
+    .section-gap {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+
+    th {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+}
+tbody {
+    /* background: orange; */
+}
+thead {
+    text-align: left;
+}
+tr {
+    height: 56px;   
+    cursor: help;
+}
+.table-container {
+    /* background-color: blueviolet; */
+    overflow-x: auto;
+}
+.table-section {
+    max-width: 1536px;
+    margin: 0 auto;
+}
+
+.table-toolbar {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+</style>
 
 {% endblock %}
