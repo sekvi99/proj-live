@@ -5,13 +5,17 @@
 
 # Table
 
-1. - [] tabela, filtry i searchbox (biblioteka!)
-2. - [] buttony do tabeli, <make update> javascript async ajax [interval 10 sec, 1 time call]
+1. - [x] tabela, filtry i searchbox (biblioteka!)
+2. - [x] buttony do tabeli, <make update> javascript async ajax [interval 10 sec, 1 time call]
      > [link](https://openbase.com/categories/python/best-django-table-packages?vs=django-jinja-knockout%2Cdjango-ajax-datatable%2Cdjango-tables2)
+3. - [] grid zamiast tabeli
+     > <!-- TODO rozwiaznie obrazkow i propertisow w tabeli -->
+     >
+     > [link](https://stackoverflow.com/questions/9961046/django-template-displaying-images-in-table)
 
 # Component: Calculator
 
-- [] Łapać dane z modelu do java'scriptu i stworzyć kontrolowalny komponent
+- [x] Łapać dane z modelu do java'scriptu i stworzyć kontrolowalny komponent
   > https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/
 
 # Layout
@@ -25,10 +29,14 @@
 
 - [] topappbar na '/log_in' gdy użytkownik jest na podstronie /log_in to wygląda inaczej
 
+===WOJTEK===
+
 ## Navbar
 
 - [] navbar
   (to nie jest filter, tylko nawigacja routes '/crypto' lub '/stock', defaultowo po zalogowaniu wrzuca w jedno albo drugie. Obie podstrony mają swoją własną przestrzeń na tabele (mają inne pola, dlatego separation of concerns))
+
+===FILIP===
 
 # django routing
 
