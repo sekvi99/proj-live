@@ -10,6 +10,7 @@ from .utils import get_unique_names_of_symbol_for_passed_model, calculate_percen
 from django.contrib.contenttypes.models import ContentType
 from typing import Final, List
 from django.forms.models import model_to_dict
+from json import dumps
 
 """
 Home display table in given order
@@ -103,56 +104,96 @@ def about_authors(request):
     }
     return render(request, 'graphsApp/about.html', context)
 
+
+# def item_details(request, item, category) FIXME: <-jak tutaj nazwy properties
 @login_required(login_url='/login/')
 def data_view(request, tablename: str, symbol: str):
-    currency_description = None  # ! Tutaj opis dla kazdej waluty, ktora posiadamy (mozna po slowniku)
-    form = calculatorForm() 
-    dict_data = None
-    calc_value = None
-    global data
-    table_values = None
-    table_keys = None
-    graph = None
-    symbol = symbol.capitalize() if tablename == 'cryptocurrencies' else symbol.upper()
-    situation_message = calculate_percent_diffrence(tablename, symbol)
+
+    
+    
     try:
         data_model = get_model_by_name(tablename)
+        print("1", data_model)
         data = data_model.objects.filter(symbol=symbol).last()
+        print("2", data)
         graph = generate_graph(data_model.objects.filter(symbol=symbol).values())
         dict_data = model_to_dict(data)
+        print("3", dict_data)
         table_values, table_keys = get_preview_data(data_model, symbol)
         
+
+        exchange_rates = dict({
+            'value': dict_data.get('value'),
+            'usd': CurrencyRates.objects.last().usd,
+            'eur': CurrencyRates.objects.last().eur,
+            'gbp': CurrencyRates.objects.last().gbp
+        })
+        print("0", exchange_rates)
+
     except Exception as e:
         print(str(e))
-    
-    if 'form' in request.POST:
-        try:
-            form = calculatorForm(data = request.POST)
-            if form.is_valid():
-                value = float(form.data['value'])
-                currency_in = form.data['currency_in']
-                obj_value = data.value if tablename =='cryptocurrencies' else data.close_price
-                """
-                Function takes:
-                1. Currency_in => Type of currency to calculate,
-                2. Value => Value from form on page,
-                3. Obj_value => Value of last 
-                """
-                calc_value = recalculate_value(currency_in, value, obj_value)
 
-        except Exception as e:
-            print(str(e))
-    
     context = dict({
         'table_name' : symbol,
         'data':dict_data,
-        'situation_message' : situation_message,
-        'currency_description': currency_description,
-        'form':form,
-        'calc_value':calc_value,
         'table_values':table_values,
         'table_keys':table_keys,
-        'graph': graph
+        'graph': graph,
+        'exchange_rates': dumps(exchange_rates)
     })
     return render(request, 'graphsApp/detailsPage.html', context)
+
+
+# @login_required(login_url='/login/')
+# def data_view(request, tablename: str, symbol: str):
+#     currency_description = None  # ! Tutaj opis dla kazdej waluty, ktora posiadamy (mozna po slowniku)
+#     form = calculatorForm() 
+#     dict_data = None
+#     calc_value = None
+#     global data
+#     table_values = None
+#     table_keys = None
+#     graph = None
+#     symbol = symbol.capitalize() if tablename == 'cryptocurrencies' else symbol.upper()
+#     situation_message = calculate_percent_diffrence(tablename, symbol)
+#     try:
+#         data_model = get_model_by_name(tablename)
+#         data = data_model.objects.filter(symbol=symbol).last()
+#         graph = generate_graph(data_model.objects.filter(symbol=symbol).values())
+#         dict_data = model_to_dict(data)
+#         table_values, table_keys = get_preview_data(data_model, symbol)
+        
+#     except Exception as e:
+#         print(str(e))
+    
+#     if 'form' in request.POST:
+#         try:
+#             form = calculatorForm(data = request.POST)
+#             if form.is_valid():
+#                 value = float(form.data['value'])
+#                 currency_in = form.data['currency_in']
+#                 obj_value = data.value if tablename =='cryptocurrencies' else data.close_price
+#                 """
+#                 Function takes:
+#                 1. Currency_in => Type of currency to calculate,
+#                 2. Value => Value from form on page,
+#                 3. Obj_value => Value of last 
+#                 """
+#                 calc_value = recalculate_value(currency_in, value, obj_value)
+
+#         except Exception as e:
+#             print(str(e))
+    
+#     context = dict({
+#         'table_name' : symbol,
+#         'data':dict_data,
+#         'situation_message' : situation_message,
+#         'currency_description': currency_description,
+#         'form':form,
+#         'calc_value':calc_value,
+#         'table_values':table_values,
+#         'table_keys':table_keys,
+#         'graph': graph
+#     })
+#     return render(request, 'graphsApp/detailsPage.html', context)
     

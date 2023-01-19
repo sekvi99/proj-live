@@ -28,18 +28,50 @@
 
     <!-- Section for calculator -->
     <section>
+        <script>
+            let exchange;
+            exchange = JSON.parse("{{exchange_rates|escapejs}}");
+            
+            
+            
+            function handleClick() {
+                console.log('runned');
+                const i_ammount = document.getElementById('ammount');
+                const i_to_currency = document.getElementById('to_currency');
+                const o_result = document.getElementById('result');
+                console.log("test")
+                // event.preventDefault()
+                let ammount = i_ammount.value;
+                console.log(ammount)
+                let to_currency = i_to_currency.value;
+                console.log(to_currency)
+                // let currency_rate = exchange[to_currency]; 
+                let result = (exchange.value / exchange[to_currency]) * ammount;
+                console.log(result);
+                o_result.innerHTML = `${result.toFixed(2)} ${to_currency.toUpperCase()}`;   
+            }
+            
+            handleClick()
+        </script>
         <h2>Calculator</h2>
+        <div class="calc-inputs">
+            <div class="calc-input-group">
+                <label for="ammount">Ammount</label>
+                <!-- FIXME: auto input value 1 + zwróc wynik -->
+                <input type="number" id="ammount" oninput="handleClick()" value="0"/>
+            </div>
+            <div class="calc-input-group">
+                <label for="to_currency">Exchange to</label>
+                    <select name="to_currency" id="to_currency">
+                        <option value="gbp">GBP</option>
+                        <option value="usd">USD</option>
+                        <option value="eur">EUR</option>
+                    </select>
+            </div>
+        </div>
         <div>
-            <form action="" method="post">
-                <!-- Sending authorization token -->
-                {% csrf_token %} 
-                {{form}}
-            <button name="form" type="submit">Calc</button>
-            </form>
-            {% if calc_value %}
-                <label>Result</label>
-                <h1>{{calc_value}}</h1>
-            {% endif %}
+            <!-- <button onclick="handleClick()">Calc</button> -->
+            <h1 id="result"></h1>
         </div>
     </section>
 
@@ -131,6 +163,35 @@ tr {
     align-items: center;
     justify-content: space-between;
 }
+select {
+    border-radius: 2px;
+    border: 2px solid var(--text);
+    padding: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: left;
+    width:100%
+}
+
+
+
+.calc-inputs {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.calc-input-group {
+    display: flex;
+    flex-direction: column;
+    background-color: orchid;
+    width: 100%;
+
+}
+
 </style>
 
 {% endblock %}
