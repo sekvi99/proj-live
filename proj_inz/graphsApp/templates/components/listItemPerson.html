@@ -1,5 +1,9 @@
 <div class="list_item_person_container">
-    <div class="img_bg"><img src="" alt="{{name}}" /></div>
+    <div class="img_bg">
+        <span class="material-symbols-outlined" style="font-size: xx-large;">
+        person
+        </span>
+    </div>
     <p>{{ name }}</p>
 </div>
 <style>
@@ -7,6 +11,9 @@
         width: 64px;
         height: 64px;
         background-color: var(--grey);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .img_bg > img {
         width: 100%;
@@ -19,4 +26,6 @@
         gap: 24px;
         align-items: center;
     }
+
+
 </style>
