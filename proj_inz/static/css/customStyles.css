@@ -166,7 +166,11 @@ button:hover {
 }
 
 .btn-outlined {
-    border: 1px solid var(--primary-dark);
+    outline: 1px solid var(--primary-dark);
+}
+
+.btn-text {
+    background: transparent;
 }
 
 
@@ -178,6 +182,7 @@ caption {
 label {
     font-size: 22px;
     font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 input {
@@ -208,50 +213,5 @@ a:-webkit-any(a) {
 
 /* Table styles */
 
-tr:hover {
-    background-color: var(--primary-light);
-}
 
-td > a:first-child {
-    display: flex;
-    /* padding: 18px; */
-    text-decoration: none;
-    color: inherit;
-    /* z-index: 0; */
-  
-}
-  
 
-th {
-    font-weight: bold;
-}
-
-table {
-    width: 100%;
-}
-tbody {
-    /* background: orange; */
-}
-thead {
-    text-align: left;
-}
-tr {
-    height: 56px;   
-    cursor: help;
-}
-.table-container {
-    /* background-color: blueviolet; */
-    border-top: 1px solid var(--text);
-    overflow-x: auto;
-}
-.table-section {
-    max-width: 1536px;
-    margin: 0 auto;
-}
-
-.table-toolbar {
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}

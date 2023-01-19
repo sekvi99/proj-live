@@ -10,7 +10,7 @@
     {% if user.is_authenticated %}
     <div class="flex align-items-center">
         <a href="{% url 'login_App:logout'%}" class="a-clear" >
-            <button>Log out</button>
+            <button class="btn-contained">Log out</button>
         </a>
     </div>
     {% else %}

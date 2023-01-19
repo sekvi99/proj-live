@@ -1,0 +1,164 @@
+{% block content %}
+<section class="table-section">
+    <div class="table-toolbar">
+        <div>
+            <h3>Assets</h3>
+            <caption>inject here data!</caption>
+        </div>
+        <div class="group1">
+            <div>
+                <select name="tags" id="tags">
+                    <option value="" label="All"></option>
+                    {% for crypto in unqiue_crypto %}
+                    <option value="{{crypto}}">{{crypto}}</option>
+                    {% endfor %}
+                    {% for stock in unique_stock %}
+                    <option value="{{stock}}">{{stock}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <input id="searchBox" type="search" placeholder="Search..."/>
+            </div>
+        </div>
+    </div>
+    {%if json_file %}
+    <div class="table-container">
+        <table id="dashboardTable">
+            <thead>
+                <tr>
+                {% for header_name in headers %}
+                    <th>{{header_name}}</th>
+                {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for dict in json_file %}
+                {% if dict.symbol in unqiue_crypto %}
+                    <tr id="{{dict.symbol}}" >
+                        {% for key, value in dict.items %}
+                                <td><a href="data/cryptocurrencies/{{dict.symbol}}" >{{value}}</a></td>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr id="{{dict.symbol}}" >
+                        {% for key, value in dict.items %}
+                                <td><a href="data/stockexchange/{{dict.symbol}}" >{{value}}</a></td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</section>
+<style>
+    .table-section {
+        max-width: 1536px;
+        margin: 0 auto;
+    }
+
+    .table-toolbar {
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .table-container {
+        border-top: 1px solid var(--text);
+
+    }
+
+    table {
+        width: 100%;
+        overflow-y: visible;
+    }
+
+    tr {
+        height: 56px;   
+        cursor: help;
+    }
+
+    tr:hover {
+        background-color: var(--primary-light);
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    thead {
+        text-align: left;
+    }
+
+    td > a:first-child {
+    display: flex;
+    /* padding: 18px; */
+    text-decoration: none;
+    color: inherit;
+    /* z-index: 0; */
+    }
+  
+
+    input[type=search] {
+        border-radius: 100px;
+        height: 48px;
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+    }
+
+    select {
+        border-radius: 2px;
+        border: 2px solid var(--text);
+        padding: 8px;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 0em;
+        text-align: left;
+        width:100%
+    }
+
+    .group1 {
+        /* background-color: blueviolet; */
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+
+    
+
+
+</style>
+
+<script>
+
+    const choosePropperRecords = function(){
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    }
+    var $rows = $('#dashboardTable tr');
+
+    $('#searchBox').keyup(choosePropperRecords);
+    $('#tags').change(choosePropperRecords);
+
+</script>
+
+<script>
+
+    // const test = {table_name:"{{table_name}}", data:"{{data}}", situation_message: "{{situation_message}}", currency_description: "{{currency_description}}", form: "{{form}}", calc_value: "{{calc_value}}", table_values: "{{table_values}}", table_keys: "{{table_keys}}", graph: "{{graph}}" }
+    const test = {table_name: "{{table_name}}", headers: "{{headers}}", json_file: "{{json_file}}", unqiue_crypto: "{{unqiue_crypto}}", unique_stock: "{{unique_stock}}" }
+    // console.log(test);
+</script>
+{% endblock content %}
