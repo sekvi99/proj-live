@@ -1,4 +1,4 @@
-{% extends 'mainLayout.html' %}
+{% extends 'loginLayout.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 {% load static %}
@@ -7,37 +7,40 @@
 {% comment %}
 Kontener na wiadomości w przypadku nieudanego zalgoowania
 {% endcomment %}
-<div>
+
   {% comment %} Formularz dla logowania użytkownika  {% endcomment %}
   <section class="form-wrapper">
-  <form method = "POST" action = "" class="form">
-    <div class="form-header">
+    {% include "components/logo.html" %}    
+    <form method = "POST" action = "" class="form">
+      <div class="form-header">
       <caption>User dashboard</caption>
       <h2>Auth required</h2>
     </div>
 
     <div class="form-group">
       {% csrf_token %}
-      <label for="inputusername">Nazwa użytkownika</label>
+      <label for="inputusername">Username</label>
       <input type="text" id="inputusername" name="username"/>
     </div>
     
     <div class="form-group">
-      <label for="inputpassword">Hasło</label>
+      <label for="inputpassword">Password</label>
       <input type="password" id="inputpassword" name="password" class="form-control"/>
     </div>
 
-      <button type="Submit">Log in</button>
+      <button class="btn-outlined" type="Submit">Log in</button>
   </form>
 </section>
-</div>
+
 <style>
     .form-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 204px);
+      height: max-content;
+      flex-direction: column;
+      margin-top: 120px;
     }
 
     .form {

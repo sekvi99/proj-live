@@ -37,15 +37,15 @@ def login_page(request):
       try:
         user = User.objects.get(username=username)
       except:
-        messages.error(request, "Podany użytkownik nie istnieje w bazie danych!")
+        messages.error(request, "The specified user does not exist in the database!")
 
       user = authenticate(request, username=username, password=password) 
       if user is not None:
         login(request, user) 
-        messages.success(request, f'Pomyślnie zalogowano - Witaj {request.user.username}!')
+        messages.success(request, f'Successfully logged in - Welcome {request.user.username}!')
         return redirect('graphsApp:home')
       else:
-        messages.error(request, 'Login lub hasło użytkownika jest niewłaściwe!')
+        messages.error(request, 'User login or password is incorrect!')
 
     context = {'table_name':table_name}
     return render(request, 'login.html', context)
@@ -57,5 +57,5 @@ The logout function using the ready-made logout method actually removes the weat
 def logout_page(request):
   
     logout(request)
-    messages.success(request, "Pomyślnie wylogowano!")
+    messages.success(request, f"Successfully logged out!")
     return redirect('login_App:login')

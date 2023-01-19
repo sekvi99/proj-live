@@ -1,9 +1,14 @@
 <div class="alert alert-{{ label.tags }}" id="{{label}}">
     <span class="material-symbols-outlined">
-      report
+      {% if label.tags == "success" %}
+        check_circle
+      {% endif %}
+      {%if label.tags == "error" %}
+        check_circle
+      {% endif %}
     </span> 
     <caption>
-      {{ label   }}
+      {{ label }}
     </caption>
 </div>
 <script>
@@ -23,22 +28,44 @@
 </script>
 <style>
 
+    :root {
+          /* Alerts */
+        --alert-error: #FDEDED;
+        --alert-error-text: #6E3534;
+        --alert-error-icon: #D74242;
+        
+        --alert-success: #EDF7ED;
+        --alert-success-text: #4D6E4E;
+        --alert-success-icon: #418945;
+    }
+
+    .alert-success {
+      background-color: var(--alert-success);
+      color: var(--alert-success-text);
+    }
+
+    .alert-success > span {
+      color: var(--alert-success-icon);
+    }
+    
+    .alert-error {
+      background-color: var(--alert-error);
+      color: var(--alert-error-text);
+    }
+    
+    .alert-error > span {
+      color: var(--alert-error-icon);
+    }
     .hide_alert {
       display: none!important;
     }
 
     .alert {
-      background: var(--alert-box);
       padding: 12px;
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 12px;
-      color: var(--background);
       max-width: 400px;
     }
-  
-    .alert > span {
-      color: var(--background)
-    }  
 </style>
