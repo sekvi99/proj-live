@@ -2,7 +2,7 @@
 <header class="flex space-between">
     <a href="{% url 'graphsApp:home'  %}" class="a-logo logo-out-box">
         <div class="flex align-items-center logo-box">
-            <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
+            <img src="{% static 'app-logo-white.svg' %}" alt="App's logo" id="appbar-logo" >
             <h1>IntellOPS</h1>
         </div>
     </a>
@@ -36,8 +36,15 @@
         width: 36px;
         height: 36px;
         padding: 4px;
-        background-color: var(--grey);
+        background-color: #1A1A1A;
         margin-right: 4px;
+    }
+    .logo-out-box {
+        outline: 2px solid #1A1A1A;
+    }
+    .logo-out-box:hover {
+        background-color: var(--green);
+        
     }
 
     .a-logo {
@@ -52,7 +59,7 @@
     }
 
     .a-logo:hover {
-        color: var(--blue)!important;
+        color: var(--primary-dark)!important;
         text-decoration: solid;
     }
 </style>

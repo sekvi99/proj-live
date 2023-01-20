@@ -1,6 +1,6 @@
 {% load static %}
 <div class="logo-box flex align-items-center">
-    <img src="{% static 'inz_logotyp.svg' %}" alt="App's logo" id="appbar-logo" >
+    <img src="{% static 'app-logo-white.svg' %}" alt="App's logo" id="appbar-logo" >
     <h1>IntellOPS</h1>
 </div>
 <style>
@@ -8,11 +8,15 @@
         padding: 16px 48px;
     }
 
+    h1 {
+        font-family: var(--font-display);
+    }
+
     #appbar-logo {
         width: 36px;
         height: 36px;
         padding: 4px;
-        background-color: var(--grey);
+        background-color: #1A1A1A;
         margin-right: 4px;
     }
 </style>
