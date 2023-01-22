@@ -12,6 +12,11 @@ from typing import Final, List
 from django.forms.models import model_to_dict
 from json import dumps
 
+TABLE_NAMES:Final[str] = list([
+    'cryptocurrencies', 
+    'stockexchange',
+])
+
 """
 Home display table in given order
 |Symbol|Date|Last Price|Diffrence between Last Two as %|
@@ -34,11 +39,8 @@ def home(request):
         stock_model = get_model_by_name('stockexchange')
         data = [crypto_model.objects.filter(symbol = crypto).values('date', 'value', 'symbol').last() for crypto in unqiue_crypto] + \
             [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
-        print("test", data)
-    except Exception:
-        data = None
-        return redirect('graphsApp:home')
-        
+    except Exception as e:
+        print(str(e))
     
     keys = ['Data', 'Wartość', 'Znacznik']
     context ={'table_name':table_name,
@@ -57,7 +59,7 @@ def filtered_home_view(request, datatype: str) -> render:
     View for data filtering in home page => crypto, stock
     """
     table_name = 'Filtered Home View'
-    global data
+    data = None
     keys = None
     unqiue_crypto = get_unique_names_of_symbol_for_passed_model('cryptocurrencies') # ! Getting unique coins for crypto currencies
     unique_stock = get_unique_names_of_symbol_for_passed_model('stockexchange') # ! Getting unique companies for stock exchange
@@ -68,11 +70,10 @@ def filtered_home_view(request, datatype: str) -> render:
         elif datatype == 'stockexchange':
             stock_model = get_model_by_name('stockexchange')
             data = [stock_model.objects.filter(symbol = stock).values('date', 'close_price', 'symbol').last() for stock in unique_stock]
-        else:
+        elif datatype not in TABLE_NAMES:
             return redirect('graphsApp:home')
-    except Exception:
-        data = None
-        return redirect('graphsApp:home')
+    except Exception as e:
+        print(str(e))
         
     
     keys = ['Data', 'Wartość', 'Znacznik']
@@ -114,27 +115,27 @@ def about_authors(request):
 # def item_details(request, item, category) FIXME: <-jak tutaj nazwy properties
 @login_required(login_url='/login/')
 def data_view(request, tablename: str, symbol: str):
-
-    
-    
+    table_keys = None
+    dict_data = None
+    table_values = None
+    graph = None
+    exchange_rates = None
+    if tablename not in TABLE_NAMES:
+        return redirect('graphsApp:home')
     try:
         data_model = get_model_by_name(tablename)
-        print("1", data_model)
         data = data_model.objects.filter(symbol=symbol).last()
-        print("2", data)
         graph = generate_graph(data_model.objects.filter(symbol=symbol).values())
         dict_data = model_to_dict(data)
-        print("3", dict_data)
         table_values, table_keys = get_preview_data(data_model, symbol)
         
 
         exchange_rates = dict({
-            'value': dict_data.get('value'),
+            'value': dict_data.get('value') if tablename =='cryptocurrencies' else dict_data.get('close_price'),
             'usd': CurrencyRates.objects.last().usd,
             'eur': CurrencyRates.objects.last().eur,
             'gbp': CurrencyRates.objects.last().gbp
         })
-        print("0", exchange_rates)
 
     except Exception as e:
         print(str(e))
@@ -150,56 +151,4 @@ def data_view(request, tablename: str, symbol: str):
     return render(request, 'pages/details.html', context)
 
 
-# @login_required(login_url='/login/')
-# def data_view(request, tablename: str, symbol: str):
-#     currency_description = None  # ! Tutaj opis dla kazdej waluty, ktora posiadamy (mozna po slowniku)
-#     form = calculatorForm() 
-#     dict_data = None
-#     calc_value = None
-#     global data
-#     table_values = None
-#     table_keys = None
-#     graph = None
-#     symbol = symbol.capitalize() if tablename == 'cryptocurrencies' else symbol.upper()
-#     situation_message = calculate_percent_diffrence(tablename, symbol)
-#     try:
-#         data_model = get_model_by_name(tablename)
-#         data = data_model.objects.filter(symbol=symbol).last()
-#         graph = generate_graph(data_model.objects.filter(symbol=symbol).values())
-#         dict_data = model_to_dict(data)
-#         table_values, table_keys = get_preview_data(data_model, symbol)
-        
-#     except Exception as e:
-#         print(str(e))
-    
-#     if 'form' in request.POST:
-#         try:
-#             form = calculatorForm(data = request.POST)
-#             if form.is_valid():
-#                 value = float(form.data['value'])
-#                 currency_in = form.data['currency_in']
-#                 obj_value = data.value if tablename =='cryptocurrencies' else data.close_price
-#                 """
-#                 Function takes:
-#                 1. Currency_in => Type of currency to calculate,
-#                 2. Value => Value from form on page,
-#                 3. Obj_value => Value of last 
-#                 """
-#                 calc_value = recalculate_value(currency_in, value, obj_value)
-
-#         except Exception as e:
-#             print(str(e))
-    
-#     context = dict({
-#         'table_name' : symbol,
-#         'data':dict_data,
-#         'situation_message' : situation_message,
-#         'currency_description': currency_description,
-#         'form':form,
-#         'calc_value':calc_value,
-#         'table_values':table_values,
-#         'table_keys':table_keys,
-#         'graph': graph
-#     })
-#     return render(request, 'pages/detailsPage.html', context)
     

@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # ! Changes in admin url -> so it doesnt complicates with base/filtered_data
+    path('admin/admin', admin.site.urls), 
     path('', include('graphsApp.urls')),
     path('login/', include('loginApp.urls')),
 ]
