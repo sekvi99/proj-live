@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=$7^k8m_w=tx%x_q1+bq6cbi%4)m&32-tp-)q^!7q=*mgw_wl7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['dev-production-fdfc.up.railway.app']
 
 INSTALLED_APPS = [
     # ! Użytkowe firm trzecich
@@ -102,9 +102,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway', 
         'USER': 'postgres',
-        'PASSWORD': '2uQed4rcuEm3tIG2XceQ',
-        'HOST': 'containers-us-west-95.railway.app', 
-        'PORT': '7535',
+        'PASSWORD': 'sFLYA11hXoCwpLswjf6W',
+        'HOST': 'containers-us-west-36.railway.app', 
+        'PORT': '6155',
     }
 }
 
